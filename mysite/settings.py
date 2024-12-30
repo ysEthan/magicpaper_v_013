@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     # 'storage',
     # 'trade',
     # 'logistics'
+    'storage.apps.StorageConfig',
 ]
 
 MIDDLEWARE = [

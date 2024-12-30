@@ -25,4 +25,5 @@ urlpatterns = [
     path('muggle/', include('muggle.urls')),
     path('gallery/', include('gallery.urls')),
     path('storage/', include('storage.urls')),
+    path('trade/', include('trade.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

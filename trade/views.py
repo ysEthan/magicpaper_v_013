@@ -3,7 +3,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DetailView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from django.http import JsonResponse
-from django.views.decorators.http import require_POST
+from django.views.decorators.http import require_POST, require_GET
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils import timezone
@@ -120,3 +120,17 @@ def sync_orders(request):
         error_message = str(e)
         logger.error(f"订单同步发生异常: {error_message}")
         return JsonResponse({'status': 'error', 'message': error_message}, status=500)
+
+@require_GET
+def generate_order_no(request):
+    """生成订单号的API"""
+    order_type = request.GET.get('order_type')
+    if not order_type:
+        return JsonResponse({'error': 'order_type is required'}, status=400)
+        
+    form = OrderForm()
+    order_no = form.generate_order_no(order_type)
+    return JsonResponse({
+        'order_no': order_no,
+        'platform_order_no': order_no  # 平台订单号与订单号保持一致
+    })

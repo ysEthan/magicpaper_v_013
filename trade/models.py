@@ -67,6 +67,7 @@ class Order(models.Model):
     recipient_email = models.EmailField()
     recipient_city = models.CharField(max_length=50)
     recipient_address = models.CharField(max_length=100)
+    recipient_postcode = models.CharField('邮编', max_length=20, blank=True, default='')
     system_remark = models.TextField('系统备注', blank=True, default='')
     cs_remark = models.TextField('客服备注', blank=True, default='')
     buyer_remark = models.TextField('买家备注', blank=True, default='')

@@ -59,108 +59,17 @@
                                     <div class="col-md-12 mb-4">
                                         <div class="mb-3">
                                             <label class="form-label">订单基本信息</label>
-                                            
                                             {% include "trade/includes/_basic_info.html" %}
-
-                                            <div class="row g-2 mt-2">
-                                                <div class="col-sm-6 col-md-4">
-                                                    <label class="form-label required">订单状态</label>
-                                                    <select class="form-select {% if form.status.errors %}is-invalid{% endif %}"
-                                                            name="status" required>
-                                                        {% for value, label in form.status.field.choices %}
-                                                            <option value="{{ value }}" {% if form.status.value == value %}selected{% endif %}>
-                                                                {{ label }}
-                                                            </option>
-                                                        {% endfor %}
-                                                    </select>
-                                                    {% if form.status.errors %}
-                                                        <div class="invalid-feedback">{{ form.status.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-sm-6 col-md-4">
-                                                    <label class="form-label required">支付金额</label>
-                                                    <input type="number" step="0.01" class="form-control {% if form.paid_amount.errors %}is-invalid{% endif %}"
-                                                           name="paid_amount" value="{{ form.paid_amount.value|default:'' }}" required>
-                                                    {% if form.paid_amount.errors %}
-                                                        <div class="invalid-feedback">{{ form.paid_amount.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-sm-6 col-md-4">
-                                                    <label class="form-label required">运费</label>
-                                                    <input type="number" step="0.01" class="form-control {% if form.freight.errors %}is-invalid{% endif %}"
-                                                           name="freight" value="{{ form.freight.value|default:'0.00' }}" required>
-                                                    {% if form.freight.errors %}
-                                                        <div class="invalid-feedback">{{ form.freight.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
+
+
 
                                     <!-- 收件人信息 -->
                                     <div class="col-md-12 mb-4">
                                         <div class="mb-3">
                                             <label class="form-label">收件人信息</label>
-                                            <div class="row g-2">
-                                                <div class="col-sm-6 col-md-4">
-                                                    <label class="form-label required">收件人姓名</label>
-                                                    <input type="text" class="form-control {% if form.recipient_name.errors %}is-invalid{% endif %}"
-                                                           name="recipient_name" value="{{ form.recipient_name.value|default:'' }}" required>
-                                                    {% if form.recipient_name.errors %}
-                                                        <div class="invalid-feedback">{{ form.recipient_name.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-sm-6 col-md-4">
-                                                    <label class="form-label required">联系电话</label>
-                                                    <input type="text" class="form-control {% if form.recipient_phone.errors %}is-invalid{% endif %}"
-                                                           name="recipient_phone" value="{{ form.recipient_phone.value|default:'' }}" required>
-                                                    {% if form.recipient_phone.errors %}
-                                                        <div class="invalid-feedback">{{ form.recipient_phone.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-sm-6 col-md-4">
-                                                    <label class="form-label">电子邮箱</label>
-                                                    <input type="email" class="form-control {% if form.recipient_email.errors %}is-invalid{% endif %}"
-                                                           name="recipient_email" value="{{ form.recipient_email.value|default:'' }}">
-                                                    {% if form.recipient_email.errors %}
-                                                        <div class="invalid-feedback">{{ form.recipient_email.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
-                                            <div class="row g-2 mt-2">
-                                                <div class="col-sm-6 col-md-3">
-                                                    <label class="form-label required">国家</label>
-                                                    <input type="text" class="form-control {% if form.recipient_country.errors %}is-invalid{% endif %}"
-                                                           name="recipient_country" value="{{ form.recipient_country.value|default:'' }}" required>
-                                                    {% if form.recipient_country.errors %}
-                                                        <div class="invalid-feedback">{{ form.recipient_country.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-sm-6 col-md-3">
-                                                    <label class="form-label required">州/省</label>
-                                                    <input type="text" class="form-control {% if form.recipient_state.errors %}is-invalid{% endif %}"
-                                                           name="recipient_state" value="{{ form.recipient_state.value|default:'' }}" required>
-                                                    {% if form.recipient_state.errors %}
-                                                        <div class="invalid-feedback">{{ form.recipient_state.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-sm-6 col-md-3">
-                                                    <label class="form-label required">城市</label>
-                                                    <input type="text" class="form-control {% if form.recipient_city.errors %}is-invalid{% endif %}"
-                                                           name="recipient_city" value="{{ form.recipient_city.value|default:'' }}" required>
-                                                    {% if form.recipient_city.errors %}
-                                                        <div class="invalid-feedback">{{ form.recipient_city.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-sm-6 col-md-3">
-                                                    <label class="form-label required">详细地址</label>
-                                                    <input type="text" class="form-control {% if form.recipient_address.errors %}is-invalid{% endif %}"
-                                                           name="recipient_address" value="{{ form.recipient_address.value|default:'' }}" required>
-                                                    {% if form.recipient_address.errors %}
-                                                        <div class="invalid-feedback">{{ form.recipient_address.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
+                                            {% include "trade/includes/_recipient_info.html" %}
                                         </div>
                                     </div>
 
@@ -168,31 +77,11 @@
                                     <div class="col-md-12">
                                         <div class="mb-3">
                                             <label class="form-label">备注信息</label>
-                                            <div class="row g-2">
-                                                <div class="col-md-4">
-                                                    <label class="form-label">买家备注</label>
-                                                    <textarea class="form-control" name="buyer_remark" rows="3">{{ form.buyer_remark.value|default:'' }}</textarea>
-                                                    {% if form.buyer_remark.errors %}
-                                                        <div class="invalid-feedback">{{ form.buyer_remark.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">系统备注</label>
-                                                    <textarea class="form-control" name="system_remark" rows="3">{{ form.system_remark.value|default:'' }}</textarea>
-                                                    {% if form.system_remark.errors %}
-                                                        <div class="invalid-feedback">{{ form.system_remark.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                                <div class="col-md-4">
-                                                    <label class="form-label">客服备注</label>
-                                                    <textarea class="form-control" name="cs_remark" rows="3">{{ form.cs_remark.value|default:'' }}</textarea>
-                                                    {% if form.cs_remark.errors %}
-                                                        <div class="invalid-feedback">{{ form.cs_remark.errors.0 }}</div>
-                                                    {% endif %}
-                                                </div>
-                                            </div>
+                                            {% include "trade/includes/_remark_info.html" %}
                                         </div>
                                     </div>
+
+                                    
                                 </div>
                             </div>
 
@@ -215,4 +104,28 @@
         </div>
     </div>
 </div>
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const orderTypeSelect = document.querySelector('select[name="order_type"]');
+    const orderNoInput = document.querySelector('input[name="order_no"]');
+    const platformOrderNoInput = document.querySelector('input[name="platform_order_no"]');
+    
+    if (orderTypeSelect && orderNoInput && platformOrderNoInput) {
+        orderTypeSelect.addEventListener('change', function() {
+            fetch(`/trade/generate-order-no/?order_type=${this.value}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.order_no) {
+                        orderNoInput.value = data.order_no;
+                        platformOrderNoInput.value = data.platform_order_no;
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        });
+    }
+});
+</script>
+{% endblock %}
 {% endblock %} 

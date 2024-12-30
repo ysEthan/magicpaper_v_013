@@ -141,6 +141,8 @@ class SPU(models.Model):
         verbose_name='类目',
         null=False,
         blank=False
+
+
     )
     status = models.BooleanField(default=True, verbose_name='状态')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')

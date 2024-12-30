@@ -1,10 +1,37 @@
-{% extends "base.html" %}
-
-{% block title %}首页{% endblock %}
-
+{% extends 'base.html' %}
 {% block content %}
-<div class="container">
-    <h1>欢迎访问首页2</h1>
-    <!-- 这里可以添加更多内容 -->
-</div>
-{% endblock %} 
+
+
+    <div class="page-body">
+
+        <div class="container-xl">
+            <div class="row row-deck row-cards">
+
+                {% include 'layouts/widget/_sticker.html' %}
+
+                {% include 'layouts/widget/_tag.html' %}
+
+                {% include 'layouts/widget/_map.html' %}
+
+                {% include 'layouts/widget/_tri-board.html' %}
+
+                {% include 'layouts/widget/_one-line.html' %}
+
+                {% include 'layouts/widget/_twi-board.html' %}
+
+                {% include 'layouts/widget/_table.html' %}
+
+
+
+
+
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+{% endblock %}

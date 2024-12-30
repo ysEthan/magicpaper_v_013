@@ -8,9 +8,11 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils import timezone
 import logging
-from .models import Order, Shop
+from .models import Order, Shop, Cart
+from gallery.models import SKU
 from .forms import OrderForm
 from . import sync
+import json
 
 # 获取logger实例
 logger = logging.getLogger(__name__)
@@ -69,9 +71,60 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('trade:order_list')
     login_url = '/admin/login/'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['skus'] = SKU.objects.filter(status=True).select_related('spu')
+        return context
+
     def form_valid(self, form):
         form.instance.created_at = timezone.now()
-        return super().form_valid(form)
+        response = super().form_valid(form)
+        
+        # 处理购物车数据
+        cart_data = self.request.POST.get('cart_data')
+        logger.info(f"接收到的购物车数据: {cart_data}")
+        
+        if cart_data:
+            try:
+                cart_items = json.loads(cart_data)
+                logger.info(f"解析后的购物车数据: {cart_items}")
+                
+                # 计算订单总金额
+                total_amount = 0
+                
+                for item in cart_items:
+                    logger.info(f"正在创建购物车项: {item}")
+                    qty = int(item['qty'])
+                    price = float(item['price'])
+                    discount = float(item['discount'])
+                    actual_price = price * qty - discount
+                    total_amount += actual_price
+                    
+                    Cart.objects.create(
+                        order=self.object,
+                        sku_id=item['sku_id'],
+                        qty=qty,
+                        price=price,
+                        discount=discount,
+                        actual_price=actual_price,
+                        cost=0  # 这里可以根据需要设置成本价
+                    )
+                
+                # 更新订单的支付金额
+                self.object.paid_amount = total_amount
+                self.object.save()
+                
+                logger.info("购物车数据保存成功")
+            except Exception as e:
+                logger.error(f"保存购物车数据时发生错误: {str(e)}")
+                logger.exception("详细错误信息:")
+                raise  # 抛出异常，让事务回滚
+                
+        else:
+            logger.warning("没有接收到购物车数据")
+            raise ValueError("订单必须包含商品明细")
+                
+        return response
 
 class OrderUpdateView(LoginRequiredMixin, UpdateView):
     model = Order
@@ -79,6 +132,37 @@ class OrderUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'trade/order_form.html'
     success_url = reverse_lazy('trade:order_list')
     login_url = '/admin/login/'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['skus'] = SKU.objects.filter(status=True).select_related('spu')
+        return context
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        
+        # 处理购物车数据
+        cart_data = self.request.POST.get('cart_data')
+        if cart_data:
+            try:
+                # 删除原有的购物车数据
+                self.object.cart_set.all().delete()
+                
+                # 创建新的购物车数据
+                cart_items = json.loads(cart_data)
+                for item in cart_items:
+                    Cart.objects.create(
+                        order=self.object,
+                        sku_id=item['sku_id'],
+                        qty=item['qty'],
+                        price=item['price'],
+                        discount=item['discount'],
+                        actual_price=item['price'] * item['qty'] - item['discount']
+                    )
+            except Exception as e:
+                logger.error(f"更新购物车数据时发生错误: {str(e)}")
+                
+        return response
 
 class OrderDetailView(LoginRequiredMixin, DetailView):
     model = Order

@@ -80,8 +80,20 @@
                                             {% include "trade/includes/_remark_info.html" %}
                                         </div>
                                     </div>
+                                    <!-- 购物车信息 -->
+                                    <div class="col-md-12">
+                                        <div class="mb-3">
+                                            <label class="form-label">商品明细</label>
+                                            {% include "trade/includes/_cart_info.html" %}
+                                        </div>
+                                    </div>
 
-                                    
+
+
+
+
+
+
                                 </div>
                             </div>
 
@@ -111,7 +123,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const orderTypeSelect = document.querySelector('select[name="order_type"]');
     const orderNoInput = document.querySelector('input[name="order_no"]');
     const platformOrderNoInput = document.querySelector('input[name="platform_order_no"]');
+    const form = document.querySelector('form');
     
+    // 处理订单号生成
     if (orderTypeSelect && orderNoInput && platformOrderNoInput) {
         orderTypeSelect.addEventListener('change', function() {
             fetch(`/trade/generate-order-no/?order_type=${this.value}`)
@@ -123,6 +137,28 @@ document.addEventListener('DOMContentLoaded', function() {
                     }
                 })
                 .catch(error => console.error('Error:', error));
+        });
+    }
+
+    // 处理表单提交
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 确保购物车数据已更新
+            if (typeof updateCartData === 'function') {
+                updateCartData();
+            }
+            
+            // 检查是否有选择商品
+            const cartData = document.getElementById('cartData');
+            if (!cartData || !cartData.value) {
+                alert('请至少选择一个商品');
+                return;
+            }
+            
+            // 提交表单
+            this.submit();
         });
     }
 });

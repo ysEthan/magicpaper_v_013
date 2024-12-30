@@ -178,7 +178,7 @@ class SKU(models.Model):
     width = models.IntegerField(null=True, blank=True, verbose_name='宽(mm)')
     height = models.IntegerField(null=True, blank=True, verbose_name='高(mm)')
     other_dimensions = models.CharField(max_length=25, null=True, blank=True, verbose_name='其他尺寸')
-    suppliers_list = models.JSONField(default=list, verbose_name='供应商列表')
+    suppliers_list = models.TextField(verbose_name='供应商列表', default='[]', blank=True)
     img_url = models.CharField(max_length=255, null=True, blank=True, verbose_name='图片URL')
     status = models.BooleanField(default=True, verbose_name='状态')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')

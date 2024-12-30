@@ -16,4 +16,5 @@ urlpatterns = [
     path('sku/add/', views.sku_add, name='sku_add'),
     path('sku/<int:pk>/edit/', views.sku_edit, name='sku_edit'),
     path('sku/<int:pk>/delete/', views.sku_delete, name='sku_delete'),
+    path('sku/sync/', views.sku_sync, name='sku_sync'),
 ] 

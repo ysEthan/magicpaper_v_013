@@ -5,6 +5,7 @@ from .models import Category, SPU, SKU, Brand
 from .forms import CategoryForm, SPUForm, SKUForm
 from django.db import models
 from django.contrib.auth.models import User
+from .sync import ProductSync
 
 @login_required
 def category_list(request):
@@ -290,3 +291,14 @@ def sku_delete(request, pk):
         'sku': sku,
         'active_menu': 'gallery_sku'
     })
+
+@login_required
+def sku_sync(request):
+    if request.method == 'POST':
+        try:
+            sync = ProductSync()
+            synced_count = sync.sync_products()
+            messages.success(request, f'成功同步 {synced_count} 条数据！')
+        except Exception as e:
+            messages.error(request, f'同步失败：{str(e)}')
+    return redirect('gallery:sku_list')

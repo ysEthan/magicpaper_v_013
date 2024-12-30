@@ -41,10 +41,10 @@ INSTALLED_APPS = [
     'page',
     'muggle',
     'gallery',
-    # 'storage',
+    'storage',
     'trade',
-    # 'logistics'
-    'storage.apps.StorageConfig',
+    'logistics'
+    # 'storage.apps.StorageConfig',
 ]
 
 MIDDLEWARE = [

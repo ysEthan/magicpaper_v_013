@@ -1,5 +1,6 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.utils import timezone
 
 class Shop(models.Model):
     PLATFORM_CHOICES = (
@@ -34,9 +35,22 @@ class Order(models.Model):
         COMPLETED = 'completed', _('已完成')
         CANCELLED = 'cancelled', _('已取消')
     
+    class OrderType(models.TextChoices):
+        PLATFORM = 'platform', _('平台订单')
+        INFLUENCER = 'influencer', _('达人订单')
+        OFFLINE = 'offline', _('线下订单')
+        EMPLOYEE = 'employee', _('员工自购')
+    
     order_no = models.CharField(max_length=64, unique=True)
     platform_order_no = models.CharField(max_length=64)
     shop = models.ForeignKey('Shop', on_delete=models.CASCADE)
+    order_type = models.CharField(
+        '订单类型',
+        max_length=20,
+        choices=OrderType.choices,
+        default=OrderType.PLATFORM,
+        help_text='订单来源类型'
+    )
     status = models.CharField(
         max_length=32,
         choices=OrderStatus.choices,

@@ -3,13 +3,23 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Category
 from .forms import CategoryForm
+from django.db import models
 
 @login_required
 def category_list(request):
-    categories = Category.objects.all()
+    categories = Category.objects.filter(status=1).order_by('rank_id', 'id')
+    
+    search_query = request.GET.get('search', '')
+    if search_query:
+        categories = categories.filter(
+            models.Q(category_name_zh__icontains=search_query) |
+            models.Q(category_name_en__icontains=search_query)
+        )
+    
     return render(request, 'gallery/category_list.html', {
         'categories': categories,
-        'active_menu': 'gallery_category'  # 用于高亮左侧菜单
+        'search_query': search_query,
+        'active_menu': 'gallery_category'
     })
 
 @login_required

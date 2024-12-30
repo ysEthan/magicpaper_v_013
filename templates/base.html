@@ -15,9 +15,12 @@
 </head>
 <body>
     <div class="wrapper">
-        {% include "includes/header.html" %}
-        {% block content %}{% endblock %}
-        {% include "includes/footer.html" %}
+        {% include "includes/sidebar.html" %}
+        <div class="page-wrapper">
+            {% include "includes/header.html" %}
+            {% block content %}{% endblock %}
+            {% include "includes/footer.html" %}
+        </div>
     </div>
     <!-- Tabler Core -->
     <script src="{% static 'js/tabler.min.js' %}"></script>

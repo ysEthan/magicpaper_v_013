@@ -1,0 +1,46 @@
+<aside class="navbar navbar-vertical navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <button class="navbar-toggler" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <h1 class="navbar-brand navbar-brand-autodark">
+            <a href="/">系统名称</a>
+        </h1>
+        <div class="collapse navbar-collapse" id="sidebar-menu">
+            <ul class="navbar-nav pt-lg-3">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'page:home' %}">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <polyline points="5 12 3 12 12 3 21 12 19 12" />
+                                <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+                                <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">首页</span>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle {% if 'gallery' in active_menu %}show{% endif %}" href="#navbar-base" data-bs-toggle="dropdown" data-bs-auto-close="false" role="button" aria-expanded="false">
+                        <span class="nav-link-icon d-md-none d-lg-inline-block">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <rect x="4" y="4" width="6" height="6" rx="1" />
+                                <rect x="14" y="4" width="6" height="6" rx="1" />
+                                <rect x="4" y="14" width="6" height="6" rx="1" />
+                                <rect x="14" y="14" width="6" height="6" rx="1" />
+                            </svg>
+                        </span>
+                        <span class="nav-link-title">商品管理</span>
+                    </a>
+                    <div class="dropdown-menu {% if 'gallery' in active_menu %}show{% endif %}">
+                        <a class="dropdown-item {% if active_menu == 'gallery_category' %}active{% endif %}" href="{% url 'gallery:category_list' %}">
+                            类目管理
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</aside> 

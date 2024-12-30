@@ -21,4 +21,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('page.urls')),
     path('muggle/', include('muggle.urls')),
+    path('gallery/', include('gallery.urls')),
 ]

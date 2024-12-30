@@ -80,9 +80,34 @@
                                 <a href="{% url 'gallery:category_edit' category.id %}" class="btn btn-white btn-sm">
                                     编辑
                                 </a>
-                                <a href="{% url 'gallery:category_delete' category.id %}" class="btn btn-danger btn-sm">
-                                    删除
-                                </a>
+                                {% if not category.children.exists %}
+                                    <button type="button" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#modal-delete-{{ category.id }}">
+                                        删除
+                                    </button>
+                                    
+                                    <!-- 删除确认弹窗 -->
+                                    <div class="modal modal-blur fade" id="modal-delete-{{ category.id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                                        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-body">
+                                                    <div class="modal-title">确认删除</div>
+                                                    <div>确定要删除类目 "{{ category.category_name_zh }}" 吗？此操作不可恢复！</div>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-link link-secondary me-auto" data-bs-dismiss="modal">取消</button>
+                                                    <form method="post" action="{% url 'gallery:category_delete' category.id %}">
+                                                        {% csrf_token %}
+                                                        <button type="submit" class="btn btn-danger">确认删除</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% else %}
+                                    <button type="button" class="btn btn-danger btn-sm" disabled title="无法删除含有子类目的分类">
+                                        删除
+                                    </button>
+                                {% endif %}
                             </div>
                         </td>
                     </tr>

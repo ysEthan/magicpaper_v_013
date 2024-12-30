@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="zh-hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>{% block title %}{% endblock %}</title>
+    {% load static %}
+    <!-- CSS files -->
+    <link rel="stylesheet" href="{% static 'css/tabler.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tabler-flags.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tabler-payments.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/tabler-vendors.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/demo.min.css' %}">
+    {% block extra_css %}{% endblock %}
+
+    <style>
+        @import url('https://rsms.me/inter/inter.css');
+        :root {
+            --tblr-font-sans-serif: 'Inter Var', -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+        }
+        body {
+            font-feature-settings: "cv03", "cv04", "cv11";
+        }
+    </style>
+</head>
+<body class="layout-fluid">
+    <script src="{% static 'js/demo-theme.min.js' %}"></script>
+    <div class="page">
+        <!-- Sidebar -->
+        {% include 'layouts/_sidebar_left.html' %}
+
+        <!-- main -->
+        <div class="page-wrapper">
+            <!-- Page header -->
+            {% include 'layouts/_header.html' %}
+
+            {% block content %}
+            {% endblock %}
+
+            {% include 'layouts/_footer.html' %}
+        </div>
+    </div>
+
+    {% include 'layouts/_popup_window.html' %}
+
+    <!-- Libs JS -->
+    <script src="{% static 'libs/apexcharts/dist/apexcharts.min.js' %}" defer></script>
+    <script src="{% static 'libs/jsvectormap/dist/js/jsvectormap.min.js' %}"></script>
+    <script src="{% static 'libs/jsvectormap/dist/maps/world.js' %}"></script>
+    <script src="{% static 'libs/jsvectormap/dist/maps/world-merc.js' %}"></script>
+    <!-- Tabler Core -->
+    <script src="{% static 'js/tabler.min.js' %}" defer></script>
+    <script src="{% static 'js/demo.min.js' %}" defer></script>
+
+    {% include 'layouts/demo_data.html' %}
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

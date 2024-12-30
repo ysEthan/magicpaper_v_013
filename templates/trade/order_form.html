@@ -1,0 +1,425 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <form class="card" method="post">
+                {% csrf_token %}
+                <div class="card-body">
+                    <h3 class="card-title">{% if object %}编辑订单{% else %}新增订单{% endif %}</h3>
+                    
+                    <!-- 订单基本信息 -->
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <i class="fas fa-shopping-cart"></i> 订单信息
+                        </div>
+                        <div class="row row-cards">
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">店铺</label>
+                                    <select name="{{ form.shop.name }}" class="form-control form-select" id="{{ form.shop.id_for_label }}">
+                                        {% for value, label in form.shop.field.choices %}
+                                            <option value="{{ value }}" {% if form.shop.value|stringformat:"s" == value|stringformat:"s" %}selected{% endif %}>
+                                                {{ label }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">平台订单号</label>
+                                    <input type="text" name="{{ form.platform_order_no.name }}" class="form-control" 
+                                           id="{{ form.platform_order_no.id_for_label }}" value="{{ form.platform_order_no.value|default:'' }}">
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="mb-3">
+                                    <label class="form-label">支付金额</label>
+                                    <input type="number" name="{{ form.paid_amount.name }}" class="form-control" 
+                                           id="{{ form.paid_amount.id_for_label }}" value="{{ form.paid_amount.value|default:'' }}" step="0.01">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 收件人信息 -->
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <i class="fas fa-user"></i> 收件人信息
+                        </div>
+                        <div class="row row-cards">
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">收件人姓名</label>
+                                    <input type="text" name="{{ form.recipient_name.name }}" class="form-control" 
+                                           id="{{ form.recipient_name.id_for_label }}" value="{{ form.recipient_name.value|default:'' }}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">电话</label>
+                                    <input type="text" name="{{ form.recipient_phone.name }}" class="form-control" 
+                                           id="{{ form.recipient_phone.id_for_label }}" value="{{ form.recipient_phone.value|default:'' }}">
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <!-- 预留空间，保持布局平衡 -->
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">国家</label>
+                                    <input type="text" name="{{ form.recipient_country.name }}" class="form-control" 
+                                           id="{{ form.recipient_country.id_for_label }}" value="{{ form.recipient_country.value|default:'' }}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">州/省</label>
+                                    <input type="text" name="{{ form.recipient_state.name }}" class="form-control" 
+                                           id="{{ form.recipient_state.id_for_label }}" value="{{ form.recipient_state.value|default:'' }}">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">城市</label>
+                                    <input type="text" name="{{ form.recipient_city.name }}" class="form-control" 
+                                           id="{{ form.recipient_city.id_for_label }}" value="{{ form.recipient_city.value|default:'' }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">详细地址</label>
+                                    <input type="text" name="{{ form.recipient_address.name }}" class="form-control" 
+                                           id="{{ form.recipient_address.id_for_label }}" value="{{ form.recipient_address.value|default:'' }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 备注信息 -->
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <i class="fas fa-comment"></i> 备注信息
+                        </div>
+                        <div class="row row-cards">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">买家备注</label>
+                                    <input type="text" name="{{ form.buyer_remark.name }}" class="form-control" 
+                                           id="{{ form.buyer_remark.id_for_label }}" value="{{ form.buyer_remark.value|default:'' }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">客服备注</label>
+                                    <input type="text" name="{{ form.cs_remark.name }}" class="form-control" 
+                                           id="{{ form.cs_remark.id_for_label }}" value="{{ form.cs_remark.value|default:'' }}">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 商品信息 -->
+                    <div class="form-section">
+                        <div class="form-section-title">
+                            <i class="fas fa-box"></i> 商品信息
+                        </div>
+                        <div class="row row-cards">
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">SKU编码</label>
+                                    <input type="text" name="sku_code" class="form-control" placeholder="输入SKU编码">
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="mb-3">
+                                    <label class="form-label">商品名称</label>
+                                    <input type="text" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">数量</label>
+                                    <input type="number" class="form-control" min="1" value="1">
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">单价</label>
+                                    <input type="number" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-2">
+                                <div class="mb-3">
+                                    <label class="form-label">小计</label>
+                                    <input type="number" class="form-control" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                                <div class="mb-3">
+                                    <label class="form-label">&nbsp;</label>
+                                    <button type="button" class="btn btn-primary form-control">
+                                        <i class="fas fa-plus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 已选商品列表 -->
+                        <div class="selected-products mt-3">
+                            <table class="table table-bordered table-sm">
+                                <thead>
+                                    <tr>
+                                        <th>SKU编码</th>
+                                        <th>商品名称</th>
+                                        <th>数量</th>
+                                        <th>单价</th>
+                                        <th>小计</th>
+                                        <th>操作</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- 这里会通过JavaScript动态添加行 -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-end">
+                    <a href="{% url 'trade:order_list' %}" class="btn btn-link">取消</a>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-save"></i> 保存
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .card {
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        margin-bottom: 1rem;
+    }
+    .card-title {
+        margin-bottom: 1.5rem;
+        font-size: 1rem;
+        font-weight: 500;
+        color: #1e293b;
+    }
+    .form-section {
+        border: 1px solid #e2e8f0;
+        border-radius: 0.5rem;
+        padding: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    /* 订单信息区块 */
+    .form-section:nth-of-type(1) {
+        background-color: #f8fafc;  /* 浅蓝灰色 */
+    }
+    /* 收件人信息区块 */
+    .form-section:nth-of-type(2) {
+        background-color: #f0fdf4;  /* 浅绿色 */
+    }
+    /* 备注信息区块 */
+    .form-section:nth-of-type(3) {
+        background-color: #fef2f2;  /* 浅红色 */
+    }
+    /* 商品信息区块 */
+    .form-section:nth-of-type(4) {
+        background-color: #f0f9ff;  /* 浅蓝色 */
+    }
+    .form-section-title {
+        font-size: 1rem;
+        font-weight: 500;
+        color: #1e293b;
+        margin-bottom: 1.25rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+    }
+    /* 图标颜色也跟随区块主题 */
+    .form-section:nth-of-type(1) .form-section-title i {
+        color: #3b82f6;  /* 蓝色 */
+    }
+    .form-section:nth-of-type(2) .form-section-title i {
+        color: #22c55e;  /* 绿色 */
+    }
+    .form-section:nth-of-type(3) .form-section-title i {
+        color: #ef4444;  /* 红色 */
+    }
+    .form-section:nth-of-type(4) .form-section-title i {
+        color: #0ea5e9;  /* 蓝色 */
+    }
+    .form-section-title i {
+        margin-right: 0.5rem;
+    }
+    .form-label {
+        font-size: 0.875rem;
+        font-weight: 500;
+        color: #475569;
+        margin-bottom: 0.5rem;
+    }
+    .form-control {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+        border-color: #e2e8f0;
+        border-radius: 0.375rem;
+        height: calc(2.3rem + 2px);
+        background-color: #fff;  /* 确保输入框保持白色背景 */
+    }
+    .form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 0.25rem rgba(59, 130, 246, 0.1);
+    }
+    .form-select {
+        padding-right: 2rem;
+        height: calc(2.3rem + 2px);
+        background-color: #fff;  /* 确保下拉框保持白色背景 */
+    }
+    .mb-3 {
+        margin-bottom: 1rem !important;
+    }
+    .row-cards {
+        margin-bottom: -1rem;
+    }
+    .card-footer {
+        background-color: #f8fafc;
+        border-top: 1px solid #e2e8f0;
+        padding: 1rem 1.5rem;
+    }
+    .btn {
+        font-size: 0.875rem;
+        padding: 0.5rem 1rem;
+    }
+    .btn-primary {
+        background-color: #3b82f6;
+        border-color: #3b82f6;
+    }
+    .btn-primary:hover {
+        background-color: #2563eb;
+        border-color: #2563eb;
+    }
+    .btn-link {
+        color: #64748b;
+        text-decoration: none;
+    }
+    .btn-link:hover {
+        color: #475569;
+    }
+    /* 表格样式 */
+    .table {
+        margin-bottom: 0;
+    }
+    .table th {
+        background-color: #f8fafc;
+        font-weight: 500;
+        font-size: 0.875rem;
+        color: #475569;
+    }
+    .table td {
+        font-size: 0.875rem;
+        vertical-align: middle;
+    }
+    .table-sm th,
+    .table-sm td {
+        padding: 0.5rem;
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // 获取输入框和按钮元素
+    const skuInput = document.querySelector('input[name="sku_code"]');
+    const productNameInput = skuInput.closest('.row-cards').querySelector('input[readonly]');
+    const quantityInput = skuInput.closest('.row-cards').querySelector('input[type="number"]');
+    const priceInput = skuInput.closest('.row-cards').querySelectorAll('input[readonly]')[1];
+    const subtotalInput = skuInput.closest('.row-cards').querySelector('input[readonly]:last-of-type');
+    const addButton = skuInput.closest('.row-cards').querySelector('.btn-primary');
+    
+    // 获取CSRF token
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    
+    // SKU输入框失去焦点时查询商品信息
+    skuInput.addEventListener('blur', function() {
+        if (this.value) {
+            fetch(`/trade/api/products/search/?sku=${this.value}`, {
+                headers: {
+                    'X-CSRFToken': csrftoken,
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.results && data.results.length > 0) {
+                    const product = data.results[0];
+                    productNameInput.value = product.text;
+                    priceInput.value = product.price;
+                    updateSubtotal();
+                } else {
+                    alert('未找到该SKU对应的商品');
+                    clearInputs();
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('获取商品信息失败');
+                clearInputs();
+            });
+        } else {
+            clearInputs();
+        }
+    });
+    
+    // 数量变化时更新小计
+    quantityInput.addEventListener('input', updateSubtotal);
+    
+    function updateSubtotal() {
+        const quantity = parseFloat(quantityInput.value) || 0;
+        const price = parseFloat(priceInput.value) || 0;
+        subtotalInput.value = (quantity * price).toFixed(2);
+    }
+    
+    function clearInputs() {
+        productNameInput.value = '';
+        priceInput.value = '';
+        updateSubtotal();
+    }
+    
+    // 添加商品到列表
+    addButton.addEventListener('click', function() {
+        if (!skuInput.value || !productNameInput.value) {
+            alert('请输入有效的SKU编码');
+            return;
+        }
+        
+        const tbody = document.querySelector('.selected-products tbody');
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${skuInput.value}</td>
+            <td>${productNameInput.value}</td>
+            <td>${quantityInput.value}</td>
+            <td>${priceInput.value}</td>
+            <td>${subtotalInput.value}</td>
+            <td>
+                <button type="button" class="btn btn-sm btn-danger" onclick="this.closest('tr').remove()">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </td>
+        `;
+        tbody.appendChild(tr);
+        
+        // 清空输入
+        skuInput.value = '';
+        clearInputs();
+        quantityInput.value = '1';
+    });
+});
+</script>
+{% endblock %} 

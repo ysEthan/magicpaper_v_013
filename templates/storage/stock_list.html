@@ -1,0 +1,350 @@
+{% extends "base.html" %}
+
+{% block extra_css %}
+<style>
+.hover-zoom-container {
+    position: fixed;
+    display: none;
+    z-index: 9999;
+    width: 300px;
+    height: 300px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    border-radius: 4px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 0;
+}
+
+.avatar.avatar-lg {
+    cursor: zoom-in;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #e5e7eb;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+}
+
+.avatar.avatar-lg:hover {
+    border-color: #206bc4;
+}
+
+.table-responsive {
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+}
+
+.table td {
+    overflow: visible !important;
+    position: relative;
+    vertical-align: middle;
+}
+
+.table td:first-child {
+    min-width: 100px;
+    width: 100px;
+    padding: 0;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.table td:first-child .avatar {
+    margin: 0;
+    border-radius: 0;
+}
+
+.table th.sku-info-col,
+.table td.sku-info-col {
+    min-width: 300px;
+    max-width: 300px;
+    width: 300px;
+}
+
+.table th.warehouse-col,
+.table td.warehouse-col {
+    min-width: 120px;
+}
+
+.table th.stock-col,
+.table td.stock-col {
+    min-width: 100px;
+}
+
+.table th.cost-col,
+.table td.cost-col {
+    min-width: 100px;
+}
+
+.table th.time-col,
+.table td.time-col {
+    min-width: 150px;
+}
+
+.avatar.avatar-lg.no-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f8fafc;
+}
+
+.avatar.avatar-lg.no-image .text-muted {
+    font-size: 12px;
+}
+
+/* 移除表格所有内边距 */
+.table {
+    margin-bottom: 0;
+}
+
+.table > :not(caption) > * > * {
+    padding: 0;
+}
+
+.table td, .table th {
+    padding: 0;
+}
+
+/* 调整信息列的内边距，保持可读性 */
+.table td.sku-info-col {
+    padding: 8px;
+}
+
+.table td.warehouse-col,
+.table td.stock-col,
+.table td.cost-col,
+.table td.time-col {
+    padding: 8px;
+}
+
+/* 表头保持一定的内边距 */
+.table thead th {
+    padding: 8px;
+    background-color: #f8fafc;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-xl">
+    <!-- Page title -->
+
+
+    <!-- Search form -->
+    <div class="card mb-3">
+        <div class="card-body">
+            <form method="get" class="row g-3">
+                <div class="col-md-3">
+                    <select class="form-select" name="warehouse" onchange="this.form.submit()">
+                        <option value="">-- 按仓库筛选 --</option>
+                        {% for warehouse in warehouses %}
+                            <option value="{{ warehouse.id }}" {% if selected_warehouse == warehouse.id|stringformat:"i" %}selected{% endif %}>
+                                {{ warehouse.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-3">
+                    <select class="form-select" name="product_type" onchange="this.form.submit()">
+                        <option value="">-- 按产品类型筛选 --</option>
+                        {% for type in product_types %}
+                            <option value="{{ type.value }}" {% if selected_product_type == type.value %}selected{% endif %}>
+                                {{ type.label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-5">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="search" value="{{ search_query }}" placeholder="搜索SKU...">
+                        <button class="btn btn-primary" type="submit">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                                <path d="M10 10m-7 0a7 7 0 1 0 14 0a7 7 0 1 0 -14 0" />
+                                <path d="M21 21l-6 -6" />
+                            </svg>
+                            搜索
+                        </button>
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <a href="?{% if search_query %}search={{ search_query }}&{% endif %}{% if selected_warehouse %}warehouse={{ selected_warehouse }}&{% endif %}{% if selected_product_type %}product_type={{ selected_product_type }}&{% endif %}download=true" 
+                       class="btn btn-primary w-100">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-download" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2 -2v-2" />
+                            <path d="M7 11l5 5l5 -5" />
+                            <path d="M12 4l0 12" />
+                        </svg>
+                        下载
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="table-responsive">
+            <table class="table table-vcenter card-table">
+                <thead>
+                    <tr>
+                        <th style="width: 100px">图片</th>
+                        <th class="sku-info-col">SKU信息</th>
+                        <th class="warehouse-col">所属仓库</th>
+                        <th class="stock-col">库存数量</th>
+                        <th class="cost-col">平均成本</th>
+                        <th class="time-col">更新时间</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for stock in stocks %}
+                    <tr>
+                        <td>
+                            {% if stock.sku.img_url %}
+                                <span class="avatar avatar-lg" 
+                                      style="background-image: url('/media/{{ stock.sku.img_url }}')"
+                                      data-image-url="/media/{{ stock.sku.img_url }}">
+                                </span>
+                            {% else %}
+                                <span class="avatar avatar-lg no-image">
+                                    <span class="text-muted">无图</span>
+                                </span>
+                            {% endif %}
+                        </td>
+                        <td class="sku-info-col">
+                            <div class="d-flex flex-column gap-1">
+                                <div>{{ stock.sku.sku_code }}</div>
+                                <div class="text-muted">{{ stock.sku.sku_name }}</div>
+                                <div class="text-muted small">类型：{{ stock.sku.spu.get_product_type_display }}</div>
+                            </div>
+                        </td>
+                        <td class="warehouse-col">{{ stock.warehouse.name }}</td>
+                        <td class="stock-col">{{ stock.stock_num }}</td>
+                        <td class="cost-col">{{ stock.avg_cost }}</td>
+                        <td class="time-col">{{ stock.updated_at|date:"Y-m-d H:i" }}</td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="6" class="text-center">暂无数据</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        
+        {% if is_paginated %}
+        <div class="card-footer d-flex align-items-center">
+            <p class="m-0 text-muted">
+                显示 {{ page_obj.start_index }} 到 {{ page_obj.end_index }} 条，共 {{ paginator.count }} 条
+            </p>
+            <ul class="pagination m-0 ms-auto">
+                {% if page_obj.has_previous %}
+                <li class="page-item">
+                    <a class="page-link" href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_warehouse %}&warehouse={{ selected_warehouse }}{% endif %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M11 7l-5 5l5 5" />
+                            <path d="M17 7l-5 5l5 5" />
+                        </svg>
+                    </a>
+                </li>
+                {% endif %}
+                
+                {% for num in paginator.page_range %}
+                    {% if page_obj.number == num %}
+                    <li class="page-item active"><a class="page-link" href="#">{{ num }}</a></li>
+                    {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                    <li class="page-item"><a class="page-link" href="?page={{ num }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_warehouse %}&warehouse={{ selected_warehouse }}{% endif %}">{{ num }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.has_next %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}{% if selected_warehouse %}&warehouse={{ selected_warehouse }}{% endif %}">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+                            <path d="M13 7l5 5l-5 5" />
+                            <path d="M7 7l5 5l-5 5" />
+                        </svg>
+                    </a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<!-- 添加放大预览容器 -->
+<div class="hover-zoom-container"></div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const zoomContainer = document.querySelector('.hover-zoom-container');
+    
+    document.querySelectorAll('.avatar.avatar-lg').forEach(avatar => {
+        // 检查是否有背景图片
+        const backgroundImage = window.getComputedStyle(avatar).backgroundImage;
+        if (backgroundImage && backgroundImage !== 'none') {
+            avatar.addEventListener('mouseenter', function(e) {
+                const rect = this.getBoundingClientRect();
+                zoomContainer.style.backgroundImage = backgroundImage;
+                zoomContainer.style.display = 'block';
+                
+                // 调整预览图片的位置
+                const windowWidth = window.innerWidth;
+                const windowHeight = window.innerHeight;
+                const zoomWidth = 300;  // 预览容器宽度
+                const zoomHeight = 300; // 预览容器高度
+                
+                // 计算左侧位置，确保不会超出窗口右边界
+                let left = rect.right + 20;
+                if (left + zoomWidth > windowWidth) {
+                    left = rect.left - zoomWidth - 20;
+                }
+                
+                // 计算顶部位置，确保预览窗口完全可见
+                let top = rect.top - (zoomHeight - rect.height) / 2;
+                if (top < 0) {
+                    top = 0;
+                } else if (top + zoomHeight > windowHeight) {
+                    top = windowHeight - zoomHeight;
+                }
+                
+                zoomContainer.style.left = left + 'px';
+                zoomContainer.style.top = top + 'px';
+            });
+            
+            avatar.addEventListener('mouseleave', function() {
+                zoomContainer.style.display = 'none';
+            });
+        }
+
+        // 添加图片加载错误处理
+        const imgUrl = backgroundImage ? backgroundImage.replace(/url\(['"](.+)['"]\)/, '$1') : '';
+        if (imgUrl && imgUrl !== 'none') {
+            const img = new Image();
+            img.onerror = function() {
+                avatar.style.backgroundImage = 'none';
+                avatar.innerHTML = '<span class="text-muted">无图</span>';
+                avatar.style.cursor = 'default';
+            };
+            img.src = imgUrl;
+        }
+    });
+});
+
+// 添加 ESC 键关闭预览功能
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        document.querySelector('.hover-zoom-container').style.display = 'none';
+    }
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-xl">
+    <div class="page-header d-print-none">
+        <div class="row align-items-center">
+            <div class="col">
+                <h2 class="page-title">{{ title }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="post">
+                {% csrf_token %}
+                
+                {% for field in form %}
+                <div class="mb-3">
+                    <label class="form-label">{{ field.label }}</label>
+                    {{ field.errors }}
+                    {% if field.name == 'suppliers_list' %}
+                    <div class="suppliers-container">
+                        {{ field }}
+                        <small class="form-hint">请输入JSON格式的供应商信息，例如：
+                        <pre>[{
+    "supplier_code": "供应商代码",
+    "supplier_product_code": "供应商货品编码",
+    "negotiated_price": "协商采购价",
+    "last_purchase_price": "上次采购价",
+    "lowest_purchase_price": "最低采购价",
+    "is_default": true
+}]</pre>
+                        </small>
+                    </div>
+                    {% else %}
+                    {{ field }}
+                    {% endif %}
+                    {% if field.help_text and field.name != 'suppliers_list' %}
+                    <small class="form-hint">{{ field.help_text }}</small>
+                    {% endif %}
+                </div>
+                {% endfor %}
+
+                <div class="form-footer">
+                    <button type="submit" class="btn btn-primary">保存</button>
+                    <a href="{% url 'gallery:sku_list' %}" class="btn btn-link">返回</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .form-control, .form-select {
+        width: 100%;
+    }
+    textarea {
+        height: 150px;
+        font-family: monospace;
+    }
+    .suppliers-container pre {
+        background-color: #f8f9fa;
+        padding: 10px;
+        border-radius: 4px;
+        margin-top: 5px;
+    }
+</style>
+{% endblock %} 

@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'page',
     'muggle',
-    # 'gallery',
+    'gallery',
     # 'storage',
     # 'trade',
     # 'logistics'

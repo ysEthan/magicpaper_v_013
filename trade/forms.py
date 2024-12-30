@@ -1,84 +1,69 @@
 from django import forms
 from django.db.models import Max
 from .models import Order, Shop
+from django.utils import timezone
 
 class OrderForm(forms.ModelForm):
+    order_type = forms.ChoiceField(
+        label='订单类型',
+        choices=[
+            ('influencer', '达人订单'),
+            ('offline', '线下订单'),
+            ('employee', '员工自购'),
+        ],
+        help_text='订单来源类型'
+    )
+
     class Meta:
         model = Order
         fields = [
-            'order_no', 'platform_order_no', 'shop', 'order_type',
-            'recipient_country', 'recipient_state', 'recipient_city', 'recipient_address',
-            'recipient_name', 'recipient_phone', 'recipient_email', 'recipient_postcode',
+            'order_type', 'order_no', 'platform_order_no', 'shop',
+            'recipient_name', 'recipient_phone', 'recipient_email',
+            'recipient_country', 'recipient_state', 'recipient_city',
+            'recipient_address', 'recipient_postcode',
             'paid_amount', 'freight',
             'system_remark', 'cs_remark', 'buyer_remark'
         ]
         widgets = {
-            'order_type': forms.Select(attrs={'class': 'form-select'}),
-            'shop': forms.Select(attrs={'class': 'form-select'}),
             'system_remark': forms.TextInput(attrs={'class': 'form-control'}),
             'cs_remark': forms.TextInput(attrs={'class': 'form-control'}),
             'buyer_remark': forms.TextInput(attrs={'class': 'form-control'}),
-            'order_no': forms.TextInput(attrs={'readonly': 'readonly'}),
-            'platform_order_no': forms.TextInput(attrs={'readonly': 'readonly'}),
         }
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        # 设置字段是否必填
-        self.fields['recipient_email'].required = False
-        self.fields['recipient_postcode'].required = False  # 邮编设为非必填
-        self.fields['system_remark'].required = False
-        self.fields['cs_remark'].required = False
-        self.fields['buyer_remark'].required = False
-        
-        # 添加字段的帮助文本
-        self.fields['order_type'].help_text = '选择订单的来源类型'
-        
-        # 从选项中移除平台订单类型
-        choices = [choice for choice in Order.OrderType.choices if choice[0] != Order.OrderType.PLATFORM]
-        self.fields['order_type'].choices = choices
-        
-        # 设置初始值
-        if not self.instance.pk:  # 如果是新建订单
-            # 生成初始订单号
-            initial_order_no = self.generate_order_no(Order.OrderType.INFLUENCER)
-            self.fields['order_no'].initial = initial_order_no
-            self.fields['platform_order_no'].initial = initial_order_no  # 平台订单号与订单号保持一致
-            self.fields['order_type'].initial = Order.OrderType.INFLUENCER  # 将默认值改为达人订单
-
-    def save(self, commit=True):
-        instance = super().save(commit=False)
-        # 设置订单状态为待处理
-        instance.status = Order.OrderStatus.PENDING
-        if commit:
-            instance.save()
-        return instance
+        # 设置店铺默认值
+        if not self.instance.pk:  # 只在创建新订单时设置默认值
+            self.initial['shop'] = 1
+            # 设置默认订单类型为达人订单并生成订单号
+            self.initial['order_type'] = 'influencer'
+            self.initial['order_no'] = self.generate_order_no('influencer')
 
     def generate_order_no(self, order_type):
-        """根据订单类型生成订单号"""
-        from datetime import datetime
+        """生成订单号"""
+        today = timezone.now().strftime('%Y%m%d')
+        prefix_map = {
+            'platform': 'PL',
+            'influencer': 'IN',
+            'offline': 'OF',
+            'employee': 'EM'
+        }
+        prefix = prefix_map.get(order_type, 'X')
         
-        # 获取当前日期作为前缀
-        date_prefix = datetime.now().strftime('%Y%m%d')
+        # 查找今天最大的订单号
+        today_start = timezone.now().replace(hour=0, minute=0, second=0, microsecond=0)
+        today_end = today_start + timezone.timedelta(days=1)
+        latest_order = Order.objects.filter(
+            created_at__gte=today_start,
+            created_at__lt=today_end,
+            order_no__startswith=f"{prefix}{today}"
+        ).order_by('-order_no').first()
         
-        # 根据订单类型设置不同的类型前缀
-        type_prefix = {
-            Order.OrderType.INFLUENCER: 'DR',  # 达人订单
-            Order.OrderType.OFFLINE: 'OF',     # 线下订单
-            Order.OrderType.EMPLOYEE: 'EP',    # 员工自购
-        }.get(order_type, 'XX')
-        
-        # 查询当天最大的订单号
-        prefix = f"{type_prefix}{date_prefix}"
-        max_order = Order.objects.filter(
-            order_no__startswith=prefix
-        ).aggregate(Max('order_no'))['order_no__max']
-        
-        # 如果当天没有订单，从1开始；否则递增
-        if not max_order:
-            sequence = '001'
+        if latest_order:
+            # 提取序号并加1
+            seq = int(latest_order.order_no[-4:]) + 1
         else:
-            last_sequence = int(max_order[-3:])
-            sequence = f"{last_sequence + 1:03d}"
+            seq = 1
             
-        return f"{prefix}{sequence}" 
+        # 生成新的订单号
+        return f"{prefix}{today}{seq:04d}" 

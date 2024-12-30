@@ -21,50 +21,28 @@
     <div class="col-sm-6 col-md-2">
         
         <input type="text" class="form-control {% if form.order_no.errors %}is-invalid{% endif %}"
-               name="order_no" value="{{ form.order_no.value|default:'' }}" placeholder="订单号" required>
+               name="order_no" value="{{ form.order_no.value|default:'' }}" placeholder="订单号" readonly required>
         {% if form.order_no.errors %}
             <div class="invalid-feedback">{{ form.order_no.errors.0 }}</div>
         {% endif %}
     </div>
-    <div class="col-sm-6 col-md-2">
-        
-        <input type="text" class="form-control {% if form.platform_order_no.errors %}is-invalid{% endif %}"
-               name="platform_order_no" value="{{ form.platform_order_no.value|default:'' }}" placeholder="平台订单号" required>
-        {% if form.platform_order_no.errors %}
-            <div class="invalid-feedback">{{ form.platform_order_no.errors.0 }}</div>
-        {% endif %}
-    </div>
-    <div class="col-sm-6 col-md-2">
-        
-        <select class="form-select {% if form.shop.errors %}is-invalid{% endif %}"
-                name="shop" required>
-            <option value="">选择店铺</option>
-            {% for shop in form.shop.field.queryset %}
-                <option value="{{ shop.id }}" {% if form.shop.value|stringformat:"s" == shop.id|stringformat:"s" %}selected{% endif %}>
-                    {{ shop.name }}
-                </option>
-            {% endfor %}
-        </select>
-        {% if form.shop.errors %}
-            <div class="invalid-feedback">{{ form.shop.errors.0 }}</div>
-        {% endif %}
-    </div>
-</div>
 
-<div class="row g-2 mt-2">
+    <input type="hidden" name="platform_order_no" value="{{ form.platform_order_no.value|default:'' }}">
+    <input type="hidden" name="shop" value="1">
+
 
     <div class="col-sm-6 col-md-2">
-        <label class="form-label required">支付金额</label>
+        
         <input type="number" step="0.01" class="form-control {% if form.paid_amount.errors %}is-invalid{% endif %}"
-               name="paid_amount" value="{{ form.paid_amount.value|default:'' }}" required>
+               name="paid_amount" value="{{ form.paid_amount.value|default:'' }}" placeholder="支付金额"    required>
         {% if form.paid_amount.errors %}
             <div class="invalid-feedback">{{ form.paid_amount.errors.0 }}</div>
         {% endif %}
     </div>
     <div class="col-sm-6 col-md-2">
-        <label class="form-label required">运费</label>
+        
         <input type="number" step="0.01" class="form-control {% if form.freight.errors %}is-invalid{% endif %}"
-               name="freight" value="{{ form.freight.value|default:'0.00' }}" required>
+               name="freight" value="{{ form.freight.value|default:'0.00' }}" placeholder="运费" required>
         {% if form.freight.errors %}
             <div class="invalid-feedback">{{ form.freight.errors.0 }}</div>
         {% endif %}

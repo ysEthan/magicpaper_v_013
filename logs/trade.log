@@ -1571,3 +1571,14 @@ INFO 2024-12-30 20:11:59,600 views 11644 20496 解析后的购物车数据: [{'sku_id': '
 INFO 2024-12-30 20:11:59,600 views 11644 20496 正在创建购物车项: {'sku_id': '1620', 'qty': 1, 'price': 1, 'discount': 0}
 INFO 2024-12-30 20:11:59,611 views 11644 20496 正在创建购物车项: {'sku_id': '1624', 'qty': 1, 'price': 2, 'discount': 0}
 INFO 2024-12-30 20:11:59,634 views 11644 20496 购物车数据保存成功
+INFO 2024-12-30 20:26:58,808 views 22884 7468 接收到的购物车数据: [{"sku_id":"1621","qty":2,"price":12,"discount":0},{"sku_id":"1624","qty":1,"price":0,"discount":0},{"sku_id":"1626","qty":1,"price":0,"discount":0}]
+INFO 2024-12-30 20:26:58,808 views 22884 7468 解析后的购物车数据: [{'sku_id': '1621', 'qty': 2, 'price': 12, 'discount': 0}, {'sku_id': '1624', 'qty': 1, 'price': 0, 'discount': 0}, {'sku_id': '1626', 'qty': 1, 'price': 0, 'discount': 0}]
+INFO 2024-12-30 20:26:58,808 views 22884 7468 正在创建购物车项: {'sku_id': '1621', 'qty': 2, 'price': 12, 'discount': 0}
+INFO 2024-12-30 20:26:58,818 views 22884 7468 正在创建购物车项: {'sku_id': '1624', 'qty': 1, 'price': 0, 'discount': 0}
+INFO 2024-12-30 20:26:58,829 views 22884 7468 正在创建购物车项: {'sku_id': '1626', 'qty': 1, 'price': 0, 'discount': 0}
+INFO 2024-12-30 20:26:58,851 views 22884 7468 购物车数据保存成功
+INFO 2024-12-30 20:48:20,982 views 8232 11320 接收到的购物车数据: [{"sku_id":"1622","qty":1,"price":0,"discount":0},{"sku_id":"1616","qty":1,"price":0,"discount":0}]
+INFO 2024-12-30 20:48:20,984 views 8232 11320 解析后的购物车数据: [{'sku_id': '1622', 'qty': 1, 'price': 0, 'discount': 0}, {'sku_id': '1616', 'qty': 1, 'price': 0, 'discount': 0}]
+INFO 2024-12-30 20:48:20,984 views 8232 11320 正在创建购物车项: {'sku_id': '1622', 'qty': 1, 'price': 0, 'discount': 0}
+INFO 2024-12-30 20:48:20,995 views 8232 11320 正在创建购物车项: {'sku_id': '1616', 'qty': 1, 'price': 0, 'discount': 0}
+INFO 2024-12-30 20:48:21,018 views 8232 11320 购物车数据保存成功

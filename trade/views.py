@@ -71,6 +71,11 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('trade:order_list')
     login_url = '/admin/login/'
 
+    def get_initial(self):
+        initial = super().get_initial()
+        initial['shop'] = 1  # 设置默认店铺
+        return initial
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['skus'] = SKU.objects.filter(status=True).select_related('spu')
@@ -78,6 +83,7 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.created_at = timezone.now()
+        form.instance.shop_id = 1  # 确保使用默认店铺
         response = super().form_valid(form)
         
         # 处理购物车数据

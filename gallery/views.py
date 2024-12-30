@@ -6,6 +6,7 @@ from .forms import CategoryForm, SPUForm, SKUForm
 from django.db import models
 from django.contrib.auth.models import User
 from .sync import ProductSync
+from django.core.paginator import Paginator
 
 @login_required
 def category_list(request):
@@ -163,8 +164,53 @@ def spu_delete(request, pk):
 
 @login_required
 def sku_list(request):
-    skus = SKU.objects.select_related('spu')
+    skus = SKU.objects.select_related('spu', 'spu__category')
     
+    # 获取所有筛选选项
+    categories = Category.objects.filter(status=True).order_by('level', 'rank_id')
+    colors = (SKU.objects.exclude(color__isnull=True)
+             .exclude(color='')
+             .values_list('color', flat=True)
+             .distinct()
+             .order_by('color'))
+    
+    materials = (SKU.objects.exclude(material__isnull=True)
+                .exclude(material='')
+                .values_list('material', flat=True)
+                .distinct()
+                .order_by('material'))
+    
+    platings = dict(SKU.PLATING_PROCESS_CHOICES)
+    product_types = []
+    for value, label in SPU.PRODUCT_TYPE_CHOICES:
+        count = SPU.objects.filter(product_type=value).count()
+        product_types.append({
+            'value': value,
+            'label': label,
+            'count': count
+        })
+
+    # 应用筛选条件
+    category_id = request.GET.get('category')
+    if category_id:
+        skus = skus.filter(spu__category_id=category_id)
+
+    selected_color = request.GET.get('color')
+    if selected_color:
+        skus = skus.filter(color=selected_color)
+
+    selected_material = request.GET.get('material')
+    if selected_material:
+        skus = skus.filter(material=selected_material)
+
+    selected_plating = request.GET.get('plating')
+    if selected_plating:
+        skus = skus.filter(plating_process=selected_plating)
+
+    selected_product_type = request.GET.get('product_type')
+    if selected_product_type:
+        skus = skus.filter(spu__product_type=selected_product_type)
+
     search_query = request.GET.get('search', '')
     if search_query:
         skus = skus.filter(
@@ -173,10 +219,40 @@ def sku_list(request):
             models.Q(spu__spu_name__icontains=search_query)
         )
     
+    # 移除排序选项，直接使用创建时间倒序
+    skus = skus.order_by('-created_at')
+
+    # 修改这里：每页显示50条记录
+    paginator = Paginator(skus, 50)  # 从20条改为50条
+    page = request.GET.get('page', 1)
+    try:
+        skus = paginator.page(page)
+    except:
+        skus = paginator.page(1)
+
+    # 为每个类目添加SKU计数和缩进级别
+    for category in categories:
+        category.sku_count = SKU.objects.filter(spu__category=category).count()
+        category.indent = '　' * (category.level - 1)
+    
     return render(request, 'gallery/sku_list.html', {
         'skus': skus,
         'search_query': search_query,
-        'active_menu': 'gallery_sku'
+        'active_menu': 'gallery_sku',
+        'categories': categories,
+        'colors': colors,
+        'materials': materials,
+        'platings': platings.items(),
+        'product_types': product_types,
+        'category_id': int(category_id) if category_id else None,
+        'selected_color': selected_color,
+        'selected_material': selected_material,
+        'selected_plating': selected_plating,
+        'selected_product_type': selected_product_type,
+        # 添加分页相关的上下文
+        'is_paginated': True,
+        'paginator': paginator,
+        'page_obj': skus,
     })
 
 @login_required

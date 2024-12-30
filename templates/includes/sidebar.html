@@ -38,6 +38,9 @@
                         <a class="dropdown-item {% if active_menu == 'gallery_category' %}active{% endif %}" href="{% url 'gallery:category_list' %}">
                             类目管理
                         </a>
+                        <a class="dropdown-item {% if active_menu == 'gallery_spu' %}active{% endif %}" href="{% url 'gallery:spu_list' %}">
+                            SPU管理
+                        </a>
                     </div>
                 </li>
             </ul>

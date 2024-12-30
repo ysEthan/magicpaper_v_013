@@ -12,6 +12,15 @@
     <link href="{% static 'css/tabler-payments.min.css' %}" rel="stylesheet"/>
     <link href="{% static 'css/tabler-vendors.min.css' %}" rel="stylesheet"/>
     {% block extra_css %}{% endblock %}
+    <style>
+        .form-label.required:after {
+            content: " *";
+            color: red;
+        }
+        .invalid-feedback.d-block {
+            display: block !important;
+        }
+    </style>
 </head>
 <body>
     <div class="wrapper">

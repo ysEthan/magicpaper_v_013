@@ -135,7 +135,13 @@ class SPU(models.Model):
     sales_channel = models.CharField(max_length=20, blank=True, null=True, verbose_name='销售渠道')
     brand = models.ForeignKey(Brand, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='品牌')
     poc = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='专员')
-    category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, blank=True, verbose_name='类目')
+    category = models.ForeignKey(
+        Category, 
+        on_delete=models.PROTECT,
+        verbose_name='类目',
+        null=False,
+        blank=False
+    )
     status = models.BooleanField(default=True, verbose_name='状态')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='创建时间')
     updated_at = models.DateTimeField(auto_now=True, verbose_name='更新时间')

@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Category
-from .forms import CategoryForm
+from .models import Category, SPU
+from .forms import CategoryForm, SPUForm
 from django.db import models
 
 @login_required
@@ -79,4 +79,82 @@ def category_delete(request, pk):
     return render(request, 'gallery/category_delete.html', {
         'category': category,
         'active_menu': 'gallery_category'
+    })
+
+@login_required
+def spu_list(request):
+    spus = SPU.objects.select_related('brand', 'category', 'poc').filter(status=True)
+    
+    search_query = request.GET.get('search', '')
+    if search_query:
+        spus = spus.filter(
+            models.Q(spu_code__icontains=search_query) |
+            models.Q(spu_name__icontains=search_query)
+        )
+    
+    return render(request, 'gallery/spu_list.html', {
+        'spus': spus,
+        'search_query': search_query,
+        'active_menu': 'gallery_spu'
+    })
+
+@login_required
+def spu_add(request):
+    if request.method == 'POST':
+        form = SPUForm(request.POST)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'SPU添加成功！')
+            return redirect('gallery:spu_list')
+        else:
+            messages.error(request, '请检查输入是否正确')
+    else:
+        form = SPUForm()
+    
+    return render(request, 'gallery/spu_form.html', {
+        'form': form,
+        'title': '添加SPU',
+        'active_menu': 'gallery_spu'
+    })
+
+@login_required
+def spu_edit(request, pk):
+    spu = get_object_or_404(SPU, pk=pk)
+    if request.method == 'POST':
+        form = SPUForm(request.POST, instance=spu)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'SPU更新成功！')
+            return redirect('gallery:spu_list')
+        else:
+            messages.error(request, '请检查输入是否正确')
+    else:
+        form = SPUForm(instance=spu)
+    
+    return render(request, 'gallery/spu_form.html', {
+        'form': form,
+        'title': '编辑SPU',
+        'active_menu': 'gallery_spu'
+    })
+
+@login_required
+def spu_delete(request, pk):
+    spu = get_object_or_404(SPU, pk=pk)
+    
+    if request.method == 'POST':
+        try:
+            # 检查是否有关联的SKU
+            if hasattr(spu, 'skus') and spu.skus.exists():
+                messages.error(request, '无法删除：该SPU下存在SKU')
+                return redirect('gallery:spu_list')
+            
+            spu.delete()
+            messages.success(request, 'SPU删除成功！')
+        except Exception as e:
+            messages.error(request, f'删除失败：{str(e)}')
+        return redirect('gallery:spu_list')
+    
+    return render(request, 'gallery/spu_delete.html', {
+        'spu': spu,
+        'active_menu': 'gallery_spu'
     })

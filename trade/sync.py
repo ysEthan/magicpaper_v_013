@@ -9,6 +9,7 @@ from django.utils import timezone
 from .models import Order, Shop, Cart
 from gallery.models import SKU  # 避免循环导入
 from logistics.models import Package, Service  # 添加Package导入
+from storage.models import Warehouse  # 添加Warehouse导入
 
 # 获取logger实例
 logger = logging.getLogger(__name__)
@@ -110,8 +111,15 @@ def sync_package_info(order, trade_data):
     logger.info(f"物流数据: {json.dumps(trade_data, ensure_ascii=False)}")
     
     try:
-        # 检查物流信息
-        logger.info(f"订单状态: {trade_data.get('tradeStatusDesc')}")
+        # 检查订单状态
+        status_desc = trade_data.get('tradeStatusDesc')
+        logger.info(f"订单状态: {status_desc}")
+        
+        # 如果订单已取消或递交中，跳过包裹同步
+        if status_desc in ['已取消', '递交中']:
+            logger.info(f"订单 {order.order_no} 状态为{status_desc}，跳过包裹同步")
+            return
+            
         logger.info(f"物流单号: {trade_data.get('logisticsNo')}")
         logger.info(f"物流公司代码: {trade_data.get('logisticsCompanyCode')}")
         
@@ -126,12 +134,33 @@ def sync_package_info(order, trade_data):
             logger.error(f"获取物流服务时出错: {str(e)}")
             return
 
+        # 获取仓库信息
+        warehouse_id = trade_data.get('warehouseNo')
+        if not warehouse_id:
+            logger.info(f"订单 {order.order_no} 未指定仓库，使用默认仓库(ID=1)")
+            warehouse_id = '1'  # 使用默认仓库
+            
+        try:
+            warehouse = Warehouse.objects.get(id=warehouse_id)
+            logger.info(f"找到仓库: {warehouse.name} (ID: {warehouse.id})")
+        except Warehouse.DoesNotExist:
+            logger.error(f"找不到仓库ID为 {warehouse_id} 的仓库，使用默认仓库(ID=1)")
+            try:
+                warehouse = Warehouse.objects.get(id=1)
+            except Warehouse.DoesNotExist:
+                logger.error("找不到默认仓库(ID=1)")
+                return
+        except Exception as e:
+            logger.error(f"获取仓库信息时出错: {str(e)}")
+            return
+
         # 创建或更新包裹记录
         try:
             package_data = {
                 'order': order,
+                'warehouse': warehouse,  # 添加仓库信息
                 'tracking_no': trade_data.get('logisticsNo', ''),  # 未发货时可能没有物流单号
-                'pkg_status_code': '1' if trade_data.get('tradeStatusDesc') == '已发货' else '0',
+                'pkg_status_code': '1' if status_desc == '已发货' else '0',
                 'service': service,
                 'items': [],  # 商品信息暂时为空列表
                 'shipping_fee': float(trade_data.get('postFee', 0))

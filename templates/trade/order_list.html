@@ -62,40 +62,40 @@
                         <table class="table table-bordered table-hover">
                             <thead>
                                 <tr>
-                                    <th style="width: 15%">订单信息</th>
-                                    <th style="width: 15%">买家信息</th>
-                                    <th style="width: 15%">备注信息</th>
-                                    <th style="width: 20%">仓配信息</th>
-                                    <th>支付金额</th>
-                                    <th>状态</th>
-                                    <th>创建时间</th>
-                                    <th>操作</th>
+                                    <th style="width: 13%">订单信息</th>
+                                    <th style="width: 11%">买家信息</th>
+                                    <th style="width: 13%">备注信息</th>
+                                    <th style="width: 18%">仓配信息</th>
+                                    <th style="width: 6%">支付金额</th>
+                                    <th style="width: 6%">状态</th>
+                                    <th style="width: 8%">创建时间</th>
+                                    <th style="width: 6%">操作</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for order in orders %}
                                 <tr>
-                                    <td style="width: 15%">
+                                    <td style="width: 13%">
                                         <div class="text-muted">
-                                            <small>Shop: {{ order.shop.name }}</small>
+                                            <small>Shop: {{ order.shop.name }} ({{ order.get_order_type_display }})</small>
                                         </div>
                                         <div class="text-muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                                             <small>ID: {{ order.id }}</small><br>
                                             <small>订单号: {{ order.platform_order_no }}</small>
                                         </div>
                                     </td>
-                                    <td style="width: 15%">
-                                        <div>{{ order.recipient_name }}</div>
-                                        <div class="text-muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                            <small>{{ order.recipient_country }} {{ order.recipient_state }} {{ order.recipient_city }} {{ order.recipient_address }}</small>
+                                    <td style="width: 11%; min-width: 160px;">
+                                        <div class="fw-bold">{{ order.recipient_name }}</div>
+                                        <div class="text-muted small" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 160px;">
+                                            {{ order.recipient_country }} {{ order.recipient_state }} {{ order.recipient_city }} {{ order.recipient_address }}
                                         </div>
-                                        <div class="text-muted">
+                                        <div class="text-muted small">
                                             {% with stats=order.get_sku_stats %}
-                                            <small>SKU种类: {{ stats.sku_count }} | 总数量: {{ stats.total_qty }}</small>
+                                            SKU数: {{ stats.sku_count }} /  件数：{{ stats.total_qty }}
                                             {% endwith %}
                                         </div>
                                     </td>
-                                    <td style="width: 15%">
+                                    <td style="width: 13%">
                                         <div class="text-muted small">
                                             {% if order.buyer_remark %}
                                             <div class="text-muted" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
@@ -121,7 +121,7 @@
                                             {% endif %}
                                         </div>
                                     </td>
-                                    <td style="width: 20%">
+                                    <td style="width: 18%">
                                         {% if order.package %}
                                             <div>
                                                 <small>物流: {{ order.package.service.carrier.name_zh }} - {{ order.package.service.service_name }}</small>
@@ -142,13 +142,13 @@
                                             <span class="text-muted">暂无发货信息</span>
                                         {% endif %}
                                     </td>
-                                    <td>{{ order.paid_amount }}</td>
-                                    <td>
+                                    <td style="width: 6%">{{ order.paid_amount }}</td>
+                                    <td style="width: 6%">
                                         <span class="badge badge-{{ order.status }}">
                                             {{ order.get_status_display }}
                                         </span>
                                     </td>
-                                    <td>{{ order.created_at|date:"Y-m-d H:i" }}</td>
+                                    <td style="width: 8%">{{ order.created_at|date:"Y-m-d H:i" }}</td>
 
 
 

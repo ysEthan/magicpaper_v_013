@@ -10,7 +10,8 @@
                     <option value="{{ sku.sku_code }} - {{ sku.sku_name }}" 
                             data-id="{{ sku.id }}"
                             data-specs="{{ sku.specs }}"
-                            data-stock="{{ sku.stock_qty }}">
+                            data-stock="{{ sku.stock_qty }}"
+                            data-img-url="{{ sku.img_url }}">
                 {% endfor %}
             </datalist>
             {% if form.sku.errors %}
@@ -28,6 +29,7 @@
                 <table class="table table-vcenter card-table">
                     <thead>
                         <tr>
+                            <th style="width: 60px;">图片</th>
                             <th>SKU编码</th>
                             <th>商品名称</th>
                             <th>规格</th>
@@ -42,6 +44,12 @@
                         {% if form.instance.pk %}
                             {% for cart in form.instance.cart_set.all %}
                             <tr data-sku-id="{{ cart.sku.id }}">
+                                <td>
+                                    <img src="/media/{{ cart.sku.img_url|default:'skus/no-image.png' }}" 
+                                         alt="{{ cart.sku.sku_name }}"
+                                         class="img-thumbnail sku-thumbnail"
+                                         data-preview-url="/media/{{ cart.sku.img_url|default:'skus/no-image.png' }}">
+                                </td>
                                 <td>{{ cart.sku.sku_code }}</td>
                                 <td>{{ cart.sku.sku_name }}</td>
                                 <td>{{ cart.sku.specs }}</td>
@@ -67,9 +75,22 @@
                     </tbody>
                     <tfoot>
                         <tr>
-                            <td colspan="6" class="text-end"><strong>总计：</strong></td>
-                            <td id="totalAmount">0.00</td>
-                            <td></td>
+                            <td colspan="3" class="text-end pe-1"><strong>用户支付运费：</strong></td>
+                            <td style="width: 80px;">
+                                <input type="number" step="0.01" min="0"
+                                       class="form-control form-control-sm {% if form.freight.errors %}is-invalid{% endif %}"
+                                       name="freight" value="{{ form.freight.value|default:1 }}"
+                                       id="userFreight"
+                                       style="width: 80px;"
+                                       required>
+                                {% if form.freight.errors %}
+                                    <div class="invalid-feedback">{{ form.freight.errors.0 }}</div>
+                                {% endif %}
+                            </td>
+                            <td class="text-end pe-1"><strong>商品总计：</strong></td>
+                            <td id="totalAmount" style="width: 80px;">0.00</td>
+                            <td class="text-end pe-1"><strong>订单总计：</strong></td>
+                            <td id="orderTotal" style="width: 80px;">0.00</td>
                         </tr>
                     </tfoot>
                 </table>
@@ -81,12 +102,44 @@
 <!-- 用于存储购物车数据的隐藏字段 -->
 <input type="hidden" name="cart_data" id="cartData" value="">
 
+<style>
+.hover-zoom-container {
+    position: fixed;
+    display: none;
+    z-index: 9999;
+    width: 240px;
+    height: 240px;
+    background-color: white;
+    box-shadow: 0 0 20px rgba(0,0,0,0.4);
+    border-radius: 4px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    padding: 10px;
+}
+
+.sku-thumbnail {
+    cursor: zoom-in;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+
+.sku-thumbnail:hover {
+    border-color: #206bc4;
+}
+</style>
+
+<!-- 图片预览容器 -->
+<div class="hover-zoom-container"></div>
+
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const skuSearch = document.getElementById('skuSearch');
     const skuDatalist = document.getElementById('skuDatalist');
     const selectedSkuList = document.getElementById('selectedSkuList');
     const cartData = document.getElementById('cartData');
+    const zoomContainer = document.querySelector('.hover-zoom-container');
 
     // 选择SKU
     skuSearch.addEventListener('input', function() {
@@ -110,6 +163,12 @@ document.addEventListener('DOMContentLoaded', function() {
             const row = document.createElement('tr');
             row.dataset.skuId = skuId;
             row.innerHTML = `
+                <td>
+                    <img src="/media/${selectedOption.dataset.imgUrl || 'skus/no-image.png'}" 
+                         alt="${skuName}"
+                         class="img-thumbnail sku-thumbnail"
+                         data-preview-url="/media/${selectedOption.dataset.imgUrl || 'skus/no-image.png'}">
+                </td>
                 <td>${skuCode}</td>
                 <td>${skuName}</td>
                 <td>${specs}</td>
@@ -179,15 +238,22 @@ document.addEventListener('DOMContentLoaded', function() {
         cartData.value = JSON.stringify(cartItems);
         console.log('Updated cart data:', cartData.value);
 
-        // 更新总计
+        // 更新商品总计
         const total = cartItems.reduce((sum, item) => {
             return sum + (item.price * item.qty - item.discount);
         }, 0);
         document.getElementById('totalAmount').textContent = total.toFixed(2);
+
+        // 更新订单总计（商品总计 + 用户支付运费）
+        const userFreight = parseFloat(document.getElementById('userFreight').value) || 0;
+        document.getElementById('orderTotal').textContent = (total + userFreight).toFixed(2);
     }
 
     // 初始化购物车数据
     updateCartData();
+
+    // 监听用户支付运费变化
+    document.getElementById('userFreight').addEventListener('change', updateCartData);
 
     // 在表单提交前确保购物车数据已更新
     document.querySelector('form').addEventListener('submit', function(e) {
@@ -203,6 +269,27 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log('Submitting form with cart data:', cartData.value);
         return true;
+    });
+
+    // 图片预览功能
+    document.addEventListener('click', function(e) {
+        if (e.target.classList.contains('sku-thumbnail')) {
+            const previewUrl = e.target.dataset.previewUrl;
+            if (previewUrl) {
+                const rect = e.target.getBoundingClientRect();
+                zoomContainer.style.backgroundImage = `url('${previewUrl}')`;
+                zoomContainer.style.display = 'block';
+                zoomContainer.style.left = (rect.right + 20) + 'px';
+                zoomContainer.style.top = (rect.top - 100) + 'px';
+            }
+        } else if (zoomContainer.style.display === 'block') {
+            zoomContainer.style.display = 'none';
+        }
+    });
+
+    // 当页面滚动时隐藏预览
+    window.addEventListener('scroll', function() {
+        zoomContainer.style.display = 'none';
     });
 });
 </script>

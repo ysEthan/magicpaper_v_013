@@ -105,6 +105,9 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
         for field in form.cleaned_data:
             logger.info(f"{field}: {form.cleaned_data[field]}")
         
+        # 设置platform_order_no与order_no一致
+        form.instance.platform_order_no = form.instance.order_no
+        
         # 设置初始支付金额为0，后续由购物车计算
         form.instance.paid_amount = 0
         response = super().form_valid(form)

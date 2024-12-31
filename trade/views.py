@@ -73,7 +73,12 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
 
     def get_initial(self):
         initial = super().get_initial()
-        initial['shop'] = 1  # 设置默认店铺
+        try:
+            default_shop = Shop.objects.get(id=1)
+            initial['shop'] = default_shop.id
+        except Shop.DoesNotExist:
+            logger.error("找不到默认店铺(ID=1)")
+            initial['shop'] = None
         return initial
 
     def get_context_data(self, **kwargs):
@@ -83,7 +88,13 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
 
     def form_valid(self, form):
         form.instance.created_at = timezone.now()
-        form.instance.shop_id = 1  # 确保使用默认店铺
+        try:
+            default_shop = Shop.objects.get(id=1)
+            form.instance.shop = default_shop
+        except Shop.DoesNotExist:
+            logger.error("找不到默认店铺(ID=1)")
+            raise ValueError("找不到默认店铺，无法创建订单")
+        
         response = super().form_valid(form)
         
         # 处理购物车数据

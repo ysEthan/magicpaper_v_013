@@ -42,7 +42,7 @@ class Order(models.Model):
         EMPLOYEE = 'employee', _('员工自购')
     
     order_no = models.CharField(max_length=64, unique=True)
-    platform_order_no = models.CharField(max_length=64)
+    platform_order_no = models.CharField(max_length=64, blank=True, default='')
     shop = models.ForeignKey('Shop', on_delete=models.CASCADE)
     order_type = models.CharField(
         '订单类型',
@@ -64,7 +64,7 @@ class Order(models.Model):
     freight = models.DecimalField(max_digits=10, decimal_places=2, default=0)
     recipient_name = models.CharField(max_length=100)
     recipient_phone = models.CharField(max_length=20)
-    recipient_email = models.EmailField()
+    recipient_email = models.EmailField(blank=True, default='')
     recipient_city = models.CharField(max_length=50)
     recipient_address = models.CharField(max_length=100)
     recipient_postcode = models.CharField('邮编', max_length=20, blank=True, default='')

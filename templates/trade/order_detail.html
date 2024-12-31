@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% load static %}
-{% load trade_extras %}
 
 {% block content %}
 <div class="container-fluid">
@@ -102,7 +101,7 @@
                                             <td>{{ item.qty }}</td>
                                             <td>{{ item.price }}</td>
                                             <td>{{ item.actual_price }}</td>
-                                            <td>{{ item.actual_price|multiply:item.qty }}</td>
+                                            <td>{{ item.subtotal }}</td>
                                         </tr>
                                         {% empty %}
                                         <tr>

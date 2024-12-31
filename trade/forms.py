@@ -4,6 +4,7 @@ from .models import Order, Shop
 from django.utils import timezone
 from storage.models import Warehouse
 from logistics.models import Service
+from django.contrib.auth.models import User
 
 class OrderForm(forms.ModelForm):
     order_type = forms.ChoiceField(
@@ -12,6 +13,7 @@ class OrderForm(forms.ModelForm):
             ('influencer', '达人订单'),
             ('offline', '线下订单'),
             ('employee', '员工自购'),
+            ('requisition', '员工领用'),
         ],
         help_text='订单来源类型'
     )
@@ -77,6 +79,7 @@ class OrderForm(forms.ModelForm):
         }
 
     def __init__(self, *args, **kwargs):
+        self.request = kwargs.pop('request', None)  # 获取request对象
         super().__init__(*args, **kwargs)
         # 设置店铺默认值
         if not self.instance.pk:  # 只在创建新订单时设置默认值
@@ -92,7 +95,8 @@ class OrderForm(forms.ModelForm):
             'platform': 'PL',
             'influencer': 'IN',
             'offline': 'OF',
-            'employee': 'EM'
+            'employee': 'EM',
+            'requisition': 'RQ'
         }
         prefix = prefix_map.get(order_type, 'X')
         
@@ -113,3 +117,11 @@ class OrderForm(forms.ModelForm):
             
         # 生成新的订单号
         return f"{prefix}{today}{seq:04d}" 
+
+    def save(self, commit=True):
+        instance = super().save(commit=False)
+        if self.request and self.request.user.is_authenticated:
+            instance.sales_rep = self.request.user
+        if commit:
+            instance.save()
+        return instance 

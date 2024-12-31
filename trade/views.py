@@ -73,6 +73,11 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     success_url = reverse_lazy('trade:order_list')
     login_url = '/admin/login/'
 
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
+
     def get_initial(self):
         initial = super().get_initial()
         try:
@@ -214,6 +219,11 @@ class OrderUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'trade/order_form.html'
     success_url = reverse_lazy('trade:order_list')
     login_url = '/admin/login/'
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['request'] = self.request
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

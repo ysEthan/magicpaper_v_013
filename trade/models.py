@@ -39,11 +39,21 @@ class Order(models.Model):
         PLATFORM = 'platform', _('平台订单')
         INFLUENCER = 'influencer', _('达人订单')
         OFFLINE = 'offline', _('线下订单')
+        REQUISITION = 'requisition', _('员工领用')
         EMPLOYEE = 'employee', _('员工自购')
+        
     
     order_no = models.CharField(max_length=64, unique=True)
     platform_order_no = models.CharField(max_length=64, blank=True, default='')
     shop = models.ForeignKey('Shop', on_delete=models.CASCADE)
+    sales_rep = models.ForeignKey(
+        'auth.User',
+        on_delete=models.SET_NULL,
+        null=True,
+        blank=True,
+        verbose_name='销售员',
+        related_name='sales_orders'
+    )
     order_type = models.CharField(
         '订单类型',
         max_length=20,

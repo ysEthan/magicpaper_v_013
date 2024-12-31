@@ -3229,3 +3229,148 @@ INFO 2024-12-31 14:08:49,920 views 9076 23256 准备创建包裹，仓库: 番禺仓, 物流服
 INFO 2024-12-31 14:08:49,920 views 9076 23256 POST数据: <QueryDict: {'csrfmiddlewaretoken': ['pndIcKLAbnQ59s0FndX1E4PKx1IsZXwLILMltMKv1ceYMDJS0hg74NeMWoScl5x0'], 'order_type': ['influencer'], 'order_no': ['IN202412310043'], 'platform_order_no': [''], 'shop': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['中国'], 'recipient_state': ['广东'], 'recipient_city': ['广州'], 'recipient_postcode': ['510000'], 'recipient_address': ['四海城4栋'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'freight': ['1'], 'cart_data': ['[{"sku_id":"1623","qty":1,"price":2,"discount":0},{"sku_id":"1618","qty":1,"price":3,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
 INFO 2024-12-31 14:08:49,931 views 9076 23256 为订单 IN202412310043 创建包裹成功，包裹ID: 53
 INFO 2024-12-31 14:08:49,931 views 9076 23256 购物车数据保存成功
+INFO 2024-12-31 14:21:58,797 views 8176 27036 表单数据:
+INFO 2024-12-31 14:21:58,797 views 8176 27036 order_type: influencer
+INFO 2024-12-31 14:21:58,797 views 8176 27036 order_no: IN202412310044
+INFO 2024-12-31 14:21:58,797 views 8176 27036 platform_order_no: 
+INFO 2024-12-31 14:21:58,797 views 8176 27036 shop: jjewelry ()
+INFO 2024-12-31 14:21:58,797 views 8176 27036 recipient_name: name
+INFO 2024-12-31 14:21:58,797 views 8176 27036 recipient_phone: 1234567890
+INFO 2024-12-31 14:21:58,797 views 8176 27036 recipient_email: email@example.com
+INFO 2024-12-31 14:21:58,802 views 8176 27036 recipient_country: 中国
+INFO 2024-12-31 14:21:58,802 views 8176 27036 recipient_state: 广东
+INFO 2024-12-31 14:21:58,802 views 8176 27036 recipient_city: 广州
+INFO 2024-12-31 14:21:58,802 views 8176 27036 recipient_address: 四海城4栋
+INFO 2024-12-31 14:21:58,802 views 8176 27036 recipient_postcode: 510000
+INFO 2024-12-31 14:21:58,802 views 8176 27036 warehouse: 番禺仓
+INFO 2024-12-31 14:21:58,803 views 8176 27036 service: ABC - 全球优先
+INFO 2024-12-31 14:21:58,803 views 8176 27036 freight: 1
+INFO 2024-12-31 14:21:58,803 views 8176 27036 shipping_fee: 7
+INFO 2024-12-31 14:21:58,803 views 8176 27036 tracking_no: 
+INFO 2024-12-31 14:21:58,803 views 8176 27036 pkg_status_code: 0
+INFO 2024-12-31 14:21:58,803 views 8176 27036 system_remark: 
+INFO 2024-12-31 14:21:58,804 views 8176 27036 cs_remark: 
+INFO 2024-12-31 14:21:58,804 views 8176 27036 buyer_remark: 
+INFO 2024-12-31 14:21:58,833 views 8176 27036 接收到的购物车数据: [{"sku_id":"1620","qty":1,"price":2,"discount":1}]
+INFO 2024-12-31 14:21:58,833 views 8176 27036 解析后的购物车数据: [{'sku_id': '1620', 'qty': 1, 'price': 2, 'discount': 1}]
+INFO 2024-12-31 14:21:58,833 views 8176 27036 正在创建购物车项: {'sku_id': '1620', 'qty': 1, 'price': 2, 'discount': 1}
+INFO 2024-12-31 14:21:58,879 views 8176 27036 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 14:21:58,880 views 8176 27036 POST数据: <QueryDict: {'csrfmiddlewaretoken': ['yKrr8YmH8C1qmMI8hbFtlow1Tfms3WhGR804p0lCYrpjZXrlUfYzL7V3iCwcp4iV'], 'order_type': ['influencer'], 'order_no': ['IN202412310044'], 'platform_order_no': [''], 'shop': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['中国'], 'recipient_state': ['广东'], 'recipient_city': ['广州'], 'recipient_postcode': ['510000'], 'recipient_address': ['四海城4栋'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'freight': ['1'], 'cart_data': ['[{"sku_id":"1620","qty":1,"price":2,"discount":1}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 14:21:58,894 views 8176 27036 为订单 IN202412310044 创建包裹成功，包裹ID: 54
+INFO 2024-12-31 14:21:58,895 views 8176 27036 购物车数据保存成功
+INFO 2024-12-31 14:36:06,630 views 15744 23472 表单数据:
+INFO 2024-12-31 14:36:06,630 views 15744 23472 order_type: influencer
+INFO 2024-12-31 14:36:06,630 views 15744 23472 order_no: IN202412310045
+INFO 2024-12-31 14:36:06,630 views 15744 23472 platform_order_no: 
+INFO 2024-12-31 14:36:06,630 views 15744 23472 shop: jjewelry ()
+INFO 2024-12-31 14:36:06,630 views 15744 23472 recipient_name: name
+INFO 2024-12-31 14:36:06,631 views 15744 23472 recipient_phone: 1234567890
+INFO 2024-12-31 14:36:06,631 views 15744 23472 recipient_email: email@example.com
+INFO 2024-12-31 14:36:06,631 views 15744 23472 recipient_country: 中国
+INFO 2024-12-31 14:36:06,631 views 15744 23472 recipient_state: 广东
+INFO 2024-12-31 14:36:06,631 views 15744 23472 recipient_city: 广州
+INFO 2024-12-31 14:36:06,631 views 15744 23472 recipient_address: 四海城4栋
+INFO 2024-12-31 14:36:06,631 views 15744 23472 recipient_postcode: 510000
+INFO 2024-12-31 14:36:06,631 views 15744 23472 warehouse: 番禺仓
+INFO 2024-12-31 14:36:06,631 views 15744 23472 service: ABC - 全球优先
+INFO 2024-12-31 14:36:06,631 views 15744 23472 freight: 1
+INFO 2024-12-31 14:36:06,631 views 15744 23472 shipping_fee: 7
+INFO 2024-12-31 14:36:06,631 views 15744 23472 tracking_no: 
+INFO 2024-12-31 14:36:06,631 views 15744 23472 pkg_status_code: 0
+INFO 2024-12-31 14:36:06,631 views 15744 23472 system_remark: 
+INFO 2024-12-31 14:36:06,632 views 15744 23472 cs_remark: 
+INFO 2024-12-31 14:36:06,632 views 15744 23472 buyer_remark: 
+INFO 2024-12-31 14:36:06,657 views 15744 23472 接收到的购物车数据: [{"sku_id":"1620","qty":1,"price":0,"discount":0}]
+INFO 2024-12-31 14:36:06,658 views 15744 23472 解析后的购物车数据: [{'sku_id': '1620', 'qty': 1, 'price': 0, 'discount': 0}]
+INFO 2024-12-31 14:36:06,658 views 15744 23472 正在创建购物车项: {'sku_id': '1620', 'qty': 1, 'price': 0, 'discount': 0}
+INFO 2024-12-31 14:36:06,697 views 15744 23472 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 14:36:06,697 views 15744 23472 POST数据: <QueryDict: {'csrfmiddlewaretoken': ['F3JKCjwKAt831ucB6LNxDKtuSbWPDwfBYrinTlvFqiwWEFVOJP6D3tSwhy6zZEgQ'], 'order_type': ['influencer'], 'order_no': ['IN202412310045'], 'platform_order_no': [''], 'shop': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['中国'], 'recipient_state': ['广东'], 'recipient_city': ['广州'], 'recipient_postcode': ['510000'], 'recipient_address': ['四海城4栋'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'freight': ['1'], 'cart_data': ['[{"sku_id":"1620","qty":1,"price":0,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 14:36:06,709 views 15744 23472 为订单 IN202412310045 创建包裹成功，包裹ID: 55
+INFO 2024-12-31 14:36:06,709 views 15744 23472 购物车数据保存成功
+INFO 2024-12-31 14:38:43,682 views 15744 23472 表单数据:
+INFO 2024-12-31 14:38:43,683 views 15744 23472 order_type: influencer
+INFO 2024-12-31 14:38:43,683 views 15744 23472 order_no: IN202412310046
+INFO 2024-12-31 14:38:43,683 views 15744 23472 platform_order_no: 
+INFO 2024-12-31 14:38:43,683 views 15744 23472 shop: jjewelry ()
+INFO 2024-12-31 14:38:43,683 views 15744 23472 recipient_name: name
+INFO 2024-12-31 14:38:43,683 views 15744 23472 recipient_phone: 1234567890
+INFO 2024-12-31 14:38:43,683 views 15744 23472 recipient_email: email@example.com
+INFO 2024-12-31 14:38:43,683 views 15744 23472 recipient_country: 中国
+INFO 2024-12-31 14:38:43,684 views 15744 23472 recipient_state: 广东
+INFO 2024-12-31 14:38:43,684 views 15744 23472 recipient_city: 广州
+INFO 2024-12-31 14:38:43,684 views 15744 23472 recipient_address: 四海城4栋
+INFO 2024-12-31 14:38:43,684 views 15744 23472 recipient_postcode: 510000
+INFO 2024-12-31 14:38:43,684 views 15744 23472 warehouse: 番禺仓
+INFO 2024-12-31 14:38:43,684 views 15744 23472 service: ABC - 全球优先
+INFO 2024-12-31 14:38:43,684 views 15744 23472 freight: 1
+INFO 2024-12-31 14:38:43,684 views 15744 23472 shipping_fee: 7
+INFO 2024-12-31 14:38:43,684 views 15744 23472 tracking_no: 
+INFO 2024-12-31 14:38:43,684 views 15744 23472 pkg_status_code: 0
+INFO 2024-12-31 14:38:43,685 views 15744 23472 system_remark: 
+INFO 2024-12-31 14:38:43,685 views 15744 23472 cs_remark: 
+INFO 2024-12-31 14:38:43,685 views 15744 23472 buyer_remark: 
+INFO 2024-12-31 14:38:43,697 views 15744 23472 接收到的购物车数据: [{"sku_id":"1621","qty":1,"price":2,"discount":0}]
+INFO 2024-12-31 14:38:43,698 views 15744 23472 解析后的购物车数据: [{'sku_id': '1621', 'qty': 1, 'price': 2, 'discount': 0}]
+INFO 2024-12-31 14:38:43,698 views 15744 23472 正在创建购物车项: {'sku_id': '1621', 'qty': 1, 'price': 2, 'discount': 0}
+INFO 2024-12-31 14:38:43,731 views 15744 23472 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 14:38:43,731 views 15744 23472 POST数据: <QueryDict: {'csrfmiddlewaretoken': ['Ee3R1Zlhk2TUzIQGc5ObCsUKPMWXVZAUXCCui1kcaRhNcTzTP97h2bjMe96Hh7B9'], 'order_type': ['influencer'], 'order_no': ['IN202412310046'], 'platform_order_no': [''], 'shop': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['中国'], 'recipient_state': ['广东'], 'recipient_city': ['广州'], 'recipient_postcode': ['510000'], 'recipient_address': ['四海城4栋'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'freight': ['1'], 'cart_data': ['[{"sku_id":"1621","qty":1,"price":2,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 14:38:43,744 views 15744 23472 为订单 IN202412310046 创建包裹成功，包裹ID: 56
+INFO 2024-12-31 14:38:43,744 views 15744 23472 购物车数据保存成功
+INFO 2024-12-31 14:44:49,304 views 23496 26068 表单数据:
+INFO 2024-12-31 14:44:49,304 views 23496 26068 order_type: influencer
+INFO 2024-12-31 14:44:49,304 views 23496 26068 order_no: IN202412310047
+INFO 2024-12-31 14:44:49,304 views 23496 26068 platform_order_no: 
+INFO 2024-12-31 14:44:49,304 views 23496 26068 shop: jjewelry ()
+INFO 2024-12-31 14:44:49,305 views 23496 26068 sales_rep: Ethan
+INFO 2024-12-31 14:44:49,305 views 23496 26068 recipient_name: name
+INFO 2024-12-31 14:44:49,305 views 23496 26068 recipient_phone: 1234567890
+INFO 2024-12-31 14:44:49,305 views 23496 26068 recipient_email: email@example.com
+INFO 2024-12-31 14:44:49,305 views 23496 26068 recipient_country: 中国
+INFO 2024-12-31 14:44:49,305 views 23496 26068 recipient_state: 广东
+INFO 2024-12-31 14:44:49,305 views 23496 26068 recipient_city: 广州
+INFO 2024-12-31 14:44:49,305 views 23496 26068 recipient_address: 四海城4栋
+INFO 2024-12-31 14:44:49,305 views 23496 26068 recipient_postcode: 510000
+INFO 2024-12-31 14:44:49,305 views 23496 26068 warehouse: 番禺仓
+INFO 2024-12-31 14:44:49,305 views 23496 26068 service: ABC - 全球优先
+INFO 2024-12-31 14:44:49,305 views 23496 26068 freight: 1
+INFO 2024-12-31 14:44:49,306 views 23496 26068 shipping_fee: 7
+INFO 2024-12-31 14:44:49,306 views 23496 26068 tracking_no: 
+INFO 2024-12-31 14:44:49,306 views 23496 26068 pkg_status_code: 0
+INFO 2024-12-31 14:44:49,306 views 23496 26068 system_remark: 
+INFO 2024-12-31 14:44:49,306 views 23496 26068 cs_remark: 
+INFO 2024-12-31 14:44:49,306 views 23496 26068 buyer_remark: 
+INFO 2024-12-31 14:44:49,318 views 23496 26068 接收到的购物车数据: []
+INFO 2024-12-31 14:44:49,318 views 23496 26068 解析后的购物车数据: []
+INFO 2024-12-31 14:44:49,329 views 23496 26068 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 14:44:49,329 views 23496 26068 POST数据: <QueryDict: {'csrfmiddlewaretoken': ['gXwFFEMsmJDGLiI0ObOG6v4fAQNkVr45zl5iWGLncy1zotrdrf7MwethZdX4hz5k'], 'order_type': ['influencer'], 'order_no': ['IN202412310047'], 'sales_rep': ['1'], 'platform_order_no': [''], 'shop': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['中国'], 'recipient_state': ['广东'], 'recipient_city': ['广州'], 'recipient_postcode': ['510000'], 'recipient_address': ['四海城4栋'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'freight': ['1'], 'cart_data': ['[]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 14:44:49,342 views 23496 26068 为订单 IN202412310047 创建包裹成功，包裹ID: 57
+INFO 2024-12-31 14:44:49,342 views 23496 26068 购物车数据保存成功
+INFO 2024-12-31 14:45:05,268 views 23496 26068 表单数据:
+INFO 2024-12-31 14:45:05,268 views 23496 26068 order_type: influencer
+INFO 2024-12-31 14:45:05,268 views 23496 26068 order_no: IN202412310048
+INFO 2024-12-31 14:45:05,268 views 23496 26068 platform_order_no: 
+INFO 2024-12-31 14:45:05,268 views 23496 26068 shop: jjewelry ()
+INFO 2024-12-31 14:45:05,268 views 23496 26068 sales_rep: Ethan
+INFO 2024-12-31 14:45:05,268 views 23496 26068 recipient_name: name
+INFO 2024-12-31 14:45:05,268 views 23496 26068 recipient_phone: 1234567890
+INFO 2024-12-31 14:45:05,268 views 23496 26068 recipient_email: email@example.com
+INFO 2024-12-31 14:45:05,269 views 23496 26068 recipient_country: 中国
+INFO 2024-12-31 14:45:05,269 views 23496 26068 recipient_state: 广东
+INFO 2024-12-31 14:45:05,269 views 23496 26068 recipient_city: 广州
+INFO 2024-12-31 14:45:05,269 views 23496 26068 recipient_address: 四海城4栋
+INFO 2024-12-31 14:45:05,269 views 23496 26068 recipient_postcode: 510000
+INFO 2024-12-31 14:45:05,269 views 23496 26068 warehouse: 番禺仓
+INFO 2024-12-31 14:45:05,269 views 23496 26068 service: ABC - 全球优先
+INFO 2024-12-31 14:45:05,269 views 23496 26068 freight: 1
+INFO 2024-12-31 14:45:05,269 views 23496 26068 shipping_fee: 7
+INFO 2024-12-31 14:45:05,269 views 23496 26068 tracking_no: 
+INFO 2024-12-31 14:45:05,269 views 23496 26068 pkg_status_code: 0
+INFO 2024-12-31 14:45:05,269 views 23496 26068 system_remark: 
+INFO 2024-12-31 14:45:05,269 views 23496 26068 cs_remark: 
+INFO 2024-12-31 14:45:05,269 views 23496 26068 buyer_remark: 
+INFO 2024-12-31 14:45:05,281 views 23496 26068 接收到的购物车数据: []
+INFO 2024-12-31 14:45:05,281 views 23496 26068 解析后的购物车数据: []
+INFO 2024-12-31 14:45:05,291 views 23496 26068 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 14:45:05,291 views 23496 26068 POST数据: <QueryDict: {'csrfmiddlewaretoken': ['1xOS1TEkqv1H6rybbEeIjittu2pPGRqokVnviVDfgkpAJChoOIxOJ1SvTpzz2ZrD'], 'order_type': ['influencer'], 'order_no': ['IN202412310048'], 'sales_rep': ['1'], 'platform_order_no': [''], 'shop': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['中国'], 'recipient_state': ['广东'], 'recipient_city': ['广州'], 'recipient_postcode': ['510000'], 'recipient_address': ['四海城4栋'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'freight': ['1'], 'cart_data': ['[]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 14:45:05,302 views 23496 26068 为订单 IN202412310048 创建包裹成功，包裹ID: 58
+INFO 2024-12-31 14:45:05,302 views 23496 26068 购物车数据保存成功

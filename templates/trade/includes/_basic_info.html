@@ -31,14 +31,7 @@
     <input type="hidden" name="shop" value="1">
 
 
-    <div class="col-sm-6 col-md-2">
-        
-        <input type="number" step="0.01" class="form-control {% if form.paid_amount.errors %}is-invalid{% endif %}"
-               name="paid_amount" value="{{ form.paid_amount.value|default:'' }}" placeholder="支付金额"    required>
-        {% if form.paid_amount.errors %}
-            <div class="invalid-feedback">{{ form.paid_amount.errors.0 }}</div>
-        {% endif %}
-    </div>
+
     <div class="col-sm-6 col-md-2">
         
         <input type="number" step="0.01" class="form-control {% if form.freight.errors %}is-invalid{% endif %}"

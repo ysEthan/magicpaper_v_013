@@ -95,6 +95,8 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
             logger.error("找不到默认店铺(ID=1)")
             raise ValueError("找不到默认店铺，无法创建订单")
         
+        # 设置初始支付金额为0，后续由购物车计算
+        form.instance.paid_amount = 0
         response = super().form_valid(form)
         
         # 处理购物车数据
@@ -127,8 +129,8 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
                         cost=0  # 这里可以根据需要设置成本价
                     )
                 
-                # 更新订单的支付金额
-                self.object.paid_amount = total_amount
+                # 更新订单的支付金额（加上运费）
+                self.object.paid_amount = total_amount + float(form.cleaned_data.get('freight', 0))
                 self.object.save()
                 
                 logger.info("购物车数据保存成功")
@@ -156,6 +158,8 @@ class OrderUpdateView(LoginRequiredMixin, UpdateView):
         return context
 
     def form_valid(self, form):
+        # 设置初始支付金额为0，后续由购物车计算
+        form.instance.paid_amount = 0
         response = super().form_valid(form)
         
         # 处理购物车数据
@@ -167,17 +171,33 @@ class OrderUpdateView(LoginRequiredMixin, UpdateView):
                 
                 # 创建新的购物车数据
                 cart_items = json.loads(cart_data)
+                total_amount = 0
+                
                 for item in cart_items:
+                    qty = int(item['qty'])
+                    price = float(item['price'])
+                    discount = float(item['discount'])
+                    actual_price = price * qty - discount
+                    total_amount += actual_price
+                    
                     Cart.objects.create(
                         order=self.object,
                         sku_id=item['sku_id'],
-                        qty=item['qty'],
-                        price=item['price'],
-                        discount=item['discount'],
-                        actual_price=item['price'] * item['qty'] - item['discount']
+                        qty=qty,
+                        price=price,
+                        discount=discount,
+                        actual_price=actual_price,
+                        cost=0  # 这里可以根据需要设置成本价
                     )
+                
+                # 更新订单的支付金额（加上运费）
+                self.object.paid_amount = total_amount + float(form.cleaned_data.get('freight', 0))
+                self.object.save()
+                
+                logger.info("购物车数据更新成功")
             except Exception as e:
                 logger.error(f"更新购物车数据时发生错误: {str(e)}")
+                raise  # 抛出异常，让事务回滚
                 
         return response
 

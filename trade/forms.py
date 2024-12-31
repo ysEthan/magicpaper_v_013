@@ -21,7 +21,7 @@ class OrderForm(forms.ModelForm):
             'recipient_name', 'recipient_phone', 'recipient_email',
             'recipient_country', 'recipient_state', 'recipient_city',
             'recipient_address', 'recipient_postcode',
-            'paid_amount', 'freight',
+            'freight',
             'system_remark', 'cs_remark', 'buyer_remark'
         ]
         widgets = {

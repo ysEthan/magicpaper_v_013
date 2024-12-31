@@ -10,7 +10,7 @@
     <div class="col-sm-6 col-md-2">
         
         <input type="text" class="form-control {% if form.recipient_phone.errors %}is-invalid{% endif %}"
-               name="recipient_phone" value="{{ form.recipient_phone.value|default:'' }}" placeholder="收件人手机号" required>
+               name="recipient_phone" value="{{ form.recipient_phone.value|default:'' }}" placeholder="收件人手机号 * " required>
         {% if form.recipient_phone.errors %}
             <div class="invalid-feedback">{{ form.recipient_phone.errors.0 }}</div>
         {% endif %}
@@ -18,7 +18,7 @@
     <div class="col-sm-6 col-md-2">
 
         <input type="email" class="form-control {% if form.recipient_email.errors %}is-invalid{% endif %}"
-               name="recipient_email" value="{{ form.recipient_email.value|default:'' }}" placeholder="收件人邮箱">
+               name="recipient_email" value="{{ form.recipient_email.value|default:'' }}" placeholder="收件人邮箱 (选填)">
         {% if form.recipient_email.errors %}
             <div class="invalid-feedback">{{ form.recipient_email.errors.0 }}</div>
         {% endif %}

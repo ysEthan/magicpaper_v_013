@@ -35,7 +35,7 @@
     <div class="col-sm-6 col-md-2">
         
         <input type="number" step="0.01" class="form-control {% if form.freight.errors %}is-invalid{% endif %}"
-               name="freight" value="{{ form.freight.value|default:'0.00' }}" placeholder="运费" required>
+               name="freight" value="" placeholder="用户支付运费" required>
         {% if form.freight.errors %}
             <div class="invalid-feedback">{{ form.freight.errors.0 }}</div>
         {% endif %}

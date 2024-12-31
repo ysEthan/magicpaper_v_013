@@ -1,27 +1,18 @@
 <div class="row g-2">
+
     <div class="col-sm-6 col-md-2">
         
-        <input type="text" class="form-control {% if form.recipient_name.errors %}is-invalid{% endif %}"
-               name="recipient_name" value="{{ form.recipient_name.value|default:'' }}" placeholder="收件人姓名 * "   required>
-        {% if form.recipient_name.errors %}
-            <div class="invalid-feedback">{{ form.recipient_name.errors.0 }}</div>
-        {% endif %}
-    </div>
+        <select class="form-select {% if form.order_type.errors %}is-invalid{% endif %}"
+                name="order_type" required>
+            {% for value, label in form.order_type.field.choices %}
+                <option value="{{ value }}" {% if form.order_type.value == value %}selected{% endif %}>
+                    {{ label }}
+                </option>
+            {% endfor %}
+        </select>
 
-</div>
-
-
-
-<div class="row g-2 mt-2">
-    <div class="col-sm-6 col-md-2">
-        
-        <input type="text" class="form-control {% if form.recipient_country.errors %}is-invalid{% endif %}"
-               name="recipient_country" value="{{ form.recipient_country.value|default:'' }}" placeholder="国家" required>
-        {% if form.recipient_country.errors %}
-            <div class="invalid-feedback">{{ form.recipient_country.errors.0 }}</div>
-        {% endif %}
     </div>
 
 
-</div>
 
+</div>

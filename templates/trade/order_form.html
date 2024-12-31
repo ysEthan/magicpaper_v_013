@@ -130,6 +130,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const orderNoInput = document.querySelector('input[name="order_no"]');
     const platformOrderNoInput = document.querySelector('input[name="platform_order_no"]');
     const form = document.querySelector('form');
+    const submitButton = form.querySelector('button[type="submit"]');
+    let isSubmitting = false;
     
     // 处理订单号生成
     if (orderTypeSelect && orderNoInput && platformOrderNoInput) {
@@ -147,25 +149,62 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     // 处理表单提交
-    if (form) {
-        form.addEventListener('submit', function(e) {
+    if (submitButton) {
+        submitButton.onclick = function(e) {
+            // 阻止默认行为
             e.preventDefault();
+            
+            // 防止重复提交
+            if (isSubmitting) {
+                return false;
+            }
             
             // 确保购物车数据已更新
             if (typeof updateCartData === 'function') {
                 updateCartData();
             }
             
-            // 检查是否有选择商品
+            // 验证购物车数据
             const cartData = document.getElementById('cartData');
-            if (!cartData || !cartData.value) {
-                alert('请至少选择一个商品');
-                return;
+            let cartItems;
+            
+            try {
+                cartItems = cartData && cartData.value ? JSON.parse(cartData.value) : [];
+            } catch (error) {
+                alert('商品数据格式错误');
+                return false;
             }
             
-            // 提交表单
-            this.submit();
-        });
+            // 检查是否有商品
+            if (!cartItems || cartItems.length === 0) {
+                alert('请至少选择一个商品');
+                return false;
+            }
+            
+            // 检查商品数据的有效性
+            for (const item of cartItems) {
+                if (!item.qty || item.qty <= 0) {
+                    alert('商品数量必须大于0');
+                    return false;
+                }
+                if (!item.price || item.price <= 0) {
+                    alert('商品单价必须大于0');
+                    return false;
+                }
+            }
+            
+            // 所有验证通过，设置标志并提交表单
+            isSubmitting = true;
+            form.submit();
+        };
+
+        // 移除表单的默认提交事件
+        form.onsubmit = function(e) {
+            if (!isSubmitting) {
+                e.preventDefault();
+                return false;
+            }
+        };
     }
 });
 </script>

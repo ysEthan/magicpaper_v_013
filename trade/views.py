@@ -121,95 +121,90 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
         cart_data = self.request.POST.get('cart_data')
         logger.info(f"接收到的购物车数据: {cart_data}")
         
-        if cart_data:
+        try:
+            cart_items = json.loads(cart_data)
+            logger.info(f"解析后的购物车数据: {cart_items}")
+            
+            # 计算订单总金额
+            total_amount = 0
+            
+            # 准备包裹的商品信息
+            package_items = []
+            
+            for item in cart_items:
+                logger.info(f"正在创建购物车项: {item}")
+                qty = int(item['qty'])
+                price = float(item['price'])
+                discount = float(item['discount'])
+                actual_price = price * qty - discount
+                total_amount += actual_price
+                
+                cart = Cart.objects.create(
+                    order=self.object,
+                    sku_id=item['sku_id'],
+                    qty=qty,
+                    price=price,
+                    discount=discount,
+                    actual_price=actual_price,
+                    cost=0  # 这里可以根据需要设置成本价
+                )
+                
+                # 获取SKU信息，添加到包裹商品列表
+                sku = SKU.objects.get(id=item['sku_id'])
+                package_items.append({
+                    'sku_id': sku.id,
+                    'sku_code': sku.sku_code,
+                    'sku_name': sku.sku_name,
+                    'qty': qty,
+                    'weight': float(sku.weight) if sku.weight else 0,
+                    'length': float(sku.length) if sku.length else 0,
+                    'width': float(sku.width) if sku.width else 0,
+                    'height': float(sku.height) if sku.height else 0
+                })
+            
+            # 更新订单的支付金额（商品金额 + 用户支付运费）
+            freight = float(form.cleaned_data.get('freight', 0))
+            self.object.paid_amount = total_amount + freight
+            self.object.save()
+            
+            # 创建包裹记录
             try:
-                cart_items = json.loads(cart_data)
-                logger.info(f"解析后的购物车数据: {cart_items}")
+                warehouse = form.cleaned_data.get('warehouse')
+                service = form.cleaned_data.get('service')
                 
-                # 计算订单总金额
-                total_amount = 0
+                logger.info(f"准备创建包裹，仓库: {warehouse}, 物流服务: {service}")
+                logger.info(f"POST数据: {self.request.POST}")
                 
-                # 准备包裹的商品信息
-                package_items = []
-                
-                for item in cart_items:
-                    logger.info(f"正在创建购物车项: {item}")
-                    qty = int(item['qty'])
-                    price = float(item['price'])
-                    discount = float(item['discount'])
-                    actual_price = price * qty - discount
-                    total_amount += actual_price
-                    
-                    cart = Cart.objects.create(
-                        order=self.object,
-                        sku_id=item['sku_id'],
-                        qty=qty,
-                        price=price,
-                        discount=discount,
-                        actual_price=actual_price,
-                        cost=0  # 这里可以根据需要设置成本价
-                    )
-                    
-                    # 获取SKU信息，添加到包裹商品列表
-                    sku = SKU.objects.get(id=item['sku_id'])
-                    package_items.append({
-                        'sku_id': sku.id,
-                        'sku_code': sku.sku_code,
-                        'sku_name': sku.sku_name,
-                        'qty': qty,
-                        'weight': float(sku.weight) if sku.weight else 0,
-                        'length': float(sku.length) if sku.length else 0,
-                        'width': float(sku.width) if sku.width else 0,
-                        'height': float(sku.height) if sku.height else 0
-                    })
-                
-                # 更新订单的支付金额（商品金额 + 用户支付运费）
-                freight = float(form.cleaned_data.get('freight', 0))
-                self.object.paid_amount = total_amount + freight
-                self.object.save()
-                
-                # 创建包裹记录
-                try:
-                    warehouse = form.cleaned_data.get('warehouse')
-                    service = form.cleaned_data.get('service')
-                    
-                    logger.info(f"准备创建包裹，仓库: {warehouse}, 物流服务: {service}")
-                    logger.info(f"POST数据: {self.request.POST}")
-                    
-                    if warehouse and service:
-                        try:
-                            package = Package.objects.create(
-                                order=self.object,
-                                warehouse=warehouse,
-                                service=service,
-                                tracking_no=form.cleaned_data.get('tracking_no', ''),
-                                pkg_status_code=form.cleaned_data.get('pkg_status_code', '0'),
-                                shipping_fee=form.cleaned_data.get('shipping_fee', 0),  # 使用物流成本
-                                items=package_items
-                            )
-                            logger.info(f"为订单 {self.object.order_no} 创建包裹成功，包裹ID: {package.id}")
-                        except Exception as e:
-                            logger.error(f"创建包裹时出错: {str(e)}")
-                            logger.error(f"参数: order={self.object}, service={service}, items={package_items}")
-                            raise
-                    else:
-                        logger.warning(f"订单 {self.object.order_no} 缺少仓库或物流服务信息，跳过创建包裹")
-                        logger.warning(f"warehouse={warehouse}, service={service}")
-                
-                except Exception as e:
-                    logger.error(f"创建包裹记录时发生错误: {str(e)}")
-                    logger.exception("详细错误信息:")
-                    # 不抛出异常，让订单创建继续完成
-                
-                logger.info("购物车数据保存成功")
+                if warehouse and service:
+                    try:
+                        package = Package.objects.create(
+                            order=self.object,
+                            warehouse=warehouse,
+                            service=service,
+                            tracking_no=form.cleaned_data.get('tracking_no', ''),
+                            pkg_status_code=form.cleaned_data.get('pkg_status_code', '0'),
+                            shipping_fee=form.cleaned_data.get('shipping_fee', 0),  # 使用物流成本
+                            items=package_items
+                        )
+                        logger.info(f"为订单 {self.object.order_no} 创建包裹成功，包裹ID: {package.id}")
+                    except Exception as e:
+                        logger.error(f"创建包裹时出错: {str(e)}")
+                        logger.error(f"参数: order={self.object}, service={service}, items={package_items}")
+                        raise
+                else:
+                    logger.warning(f"订单 {self.object.order_no} 缺少仓库或物流服务信息，跳过创建包裹")
+                    logger.warning(f"warehouse={warehouse}, service={service}")
+            
             except Exception as e:
-                logger.error(f"保存购物车数据时发生错误: {str(e)}")
+                logger.error(f"创建包裹记录时发生错误: {str(e)}")
                 logger.exception("详细错误信息:")
-                raise  # 抛出异常，让事务回滚
-                
-        else:
-            logger.warning("没有接收到购物车数据")
-            raise ValueError("订单必须包含商品明细")
+                # 不抛出异常，让订单创建继续完成
+            
+            logger.info("购物车数据保存成功")
+        except Exception as e:
+            logger.error(f"保存购物车数据时发生错误: {str(e)}")
+            logger.exception("详细错误信息:")
+            raise  # 抛出异常，让事务回滚
                 
         return response
 

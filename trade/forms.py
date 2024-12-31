@@ -5,8 +5,11 @@ from django.utils import timezone
 from storage.models import Warehouse
 from logistics.models import Service
 from django.contrib.auth.models import User
+import json
 
 class OrderForm(forms.ModelForm):
+    cart_data = forms.CharField(required=False, widget=forms.HiddenInput())
+    
     order_type = forms.ChoiceField(
         label='订单类型',
         choices=[
@@ -125,3 +128,19 @@ class OrderForm(forms.ModelForm):
         if commit:
             instance.save()
         return instance 
+
+    def clean(self):
+        cleaned_data = super().clean()
+        cart_data = self.data.get('cart_data')
+        
+        if not cart_data:
+            raise forms.ValidationError('订单必须包含商品明细')
+            
+        try:
+            cart_items = json.loads(cart_data)
+            if not cart_items:
+                raise forms.ValidationError('订单必须包含商品明细')
+        except json.JSONDecodeError:
+            raise forms.ValidationError('商品明细数据格式错误')
+            
+        return cleaned_data 

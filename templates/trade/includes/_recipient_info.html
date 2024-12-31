@@ -2,7 +2,7 @@
     <div class="col-sm-6 col-md-2">
         
         <input type="text" class="form-control {% if form.recipient_name.errors %}is-invalid{% endif %}"
-               name="recipient_name" value="{{ form.recipient_name.value|default:'' }}" placeholder="收件人姓名 * "   required>
+               name="recipient_name" value="{{ form.recipient_name.value|default:'name' }}" placeholder="收件人姓名 * "   required>
         {% if form.recipient_name.errors %}
             <div class="invalid-feedback">{{ form.recipient_name.errors.0 }}</div>
         {% endif %}
@@ -10,7 +10,7 @@
     <div class="col-sm-6 col-md-2">
         
         <input type="text" class="form-control {% if form.recipient_phone.errors %}is-invalid{% endif %}"
-               name="recipient_phone" value="{{ form.recipient_phone.value|default:'' }}" placeholder="收件人手机号 * " required>
+               name="recipient_phone" value="{{ form.recipient_phone.value|default:'1234567890' }}" placeholder="收件人手机号 * " required>
         {% if form.recipient_phone.errors %}
             <div class="invalid-feedback">{{ form.recipient_phone.errors.0 }}</div>
         {% endif %}
@@ -18,7 +18,7 @@
     <div class="col-sm-6 col-md-2">
 
         <input type="email" class="form-control {% if form.recipient_email.errors %}is-invalid{% endif %}"
-               name="recipient_email" value="{{ form.recipient_email.value|default:'' }}" placeholder="收件人邮箱 (选填)">
+               name="recipient_email" value="{{ form.recipient_email.value|default:'email@example.com' }}" placeholder="收件人邮箱 (选填)">
         {% if form.recipient_email.errors %}
             <div class="invalid-feedback">{{ form.recipient_email.errors.0 }}</div>
         {% endif %}
@@ -31,7 +31,7 @@
     <div class="col-sm-6 col-md-2">
         
         <input type="text" class="form-control {% if form.recipient_country.errors %}is-invalid{% endif %}"
-               name="recipient_country" value="{{ form.recipient_country.value|default:'' }}" placeholder="国家" required>
+               name="recipient_country" value="{{ form.recipient_country.value|default:'中国' }}" placeholder="国家" required>
         {% if form.recipient_country.errors %}
             <div class="invalid-feedback">{{ form.recipient_country.errors.0 }}</div>
         {% endif %}
@@ -39,7 +39,7 @@
     <div class="col-sm-6 col-md-2">
 
         <input type="text" class="form-control {% if form.recipient_state.errors %}is-invalid{% endif %}"
-               name="recipient_state" value="{{ form.recipient_state.value|default:'' }}" placeholder="州/省" required>
+               name="recipient_state" value="{{ form.recipient_state.value|default:'广东' }}" placeholder="州/省" required>
         {% if form.recipient_state.errors %}
             <div class="invalid-feedback">{{ form.recipient_state.errors.0 }}</div>
         {% endif %}
@@ -47,7 +47,7 @@
     <div class="col-sm-6 col-md-2">
 
         <input type="text" class="form-control {% if form.recipient_city.errors %}is-invalid{% endif %}"
-               name="recipient_city" value="{{ form.recipient_city.value|default:'' }}" placeholder="城市" required>
+               name="recipient_city" value="{{ form.recipient_city.value|default:'广州' }}" placeholder="城市" required>
         {% if form.recipient_city.errors %}
             <div class="invalid-feedback">{{ form.recipient_city.errors.0 }}</div>
         {% endif %}
@@ -55,7 +55,7 @@
     <div class="col-sm-6 col-md-2">
 
         <input type="text" class="form-control {% if form.recipient_postcode.errors %}is-invalid{% endif %}"
-               name="recipient_postcode" value="{{ form.recipient_postcode.value|default:'' }}" placeholder="邮编">
+               name="recipient_postcode" value="{{ form.recipient_postcode.value|default:'510000' }}" placeholder="邮编">
         {% if form.recipient_postcode.errors %}
             <div class="invalid-feedback">{{ form.recipient_postcode.errors.0 }}</div>
         {% endif %}
@@ -63,7 +63,7 @@
     <div class="col-sm-6 col-md-8">
 
         <input type="text" class="form-control {% if form.recipient_address.errors %}is-invalid{% endif %}"
-               name="recipient_address" value="{{ form.recipient_address.value|default:'' }}" placeholder="详细地址" required>
+               name="recipient_address" value="{{ form.recipient_address.value|default:'四海城4栋' }}" placeholder="详细地址" required>
         {% if form.recipient_address.errors %}
             <div class="invalid-feedback">{{ form.recipient_address.errors.0 }}</div>
         {% endif %}

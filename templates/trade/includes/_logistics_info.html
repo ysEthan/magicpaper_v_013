@@ -4,7 +4,7 @@
         <label class="form-label">发货仓库</label>
         <select class="form-select {% if form.warehouse.errors %}is-invalid{% endif %}"
                 name="warehouse" required>
-            <option value="">选择仓库</option>
+            <!-- <option value="">选择仓库</option> -->
             {% for warehouse in warehouses %}
                 <option value="{{ warehouse.id }}" {% if form.warehouse.value == warehouse.id %}selected{% endif %}>
                     {{ warehouse.name }}
@@ -21,7 +21,7 @@
         <label class="form-label">物流服务</label>
         <select class="form-select {% if form.service.errors %}is-invalid{% endif %}"
                 name="service" required>
-            <option value="">选择物流服务</option>
+            <!-- <option value="">选择物流服务</option> -->
             {% for service in services %}
                 <option value="{{ service.id }}" {% if form.service.value == service.id %}selected{% endif %}>
                     {{ service.carrier.name_zh }} - {{ service.service_name }}
@@ -38,7 +38,7 @@
         <label class="form-label">运费</label>
         <input type="number" step="0.01" min="0"
                class="form-control {% if form.shipping_fee.errors %}is-invalid{% endif %}"
-               name="shipping_fee" value="{{ form.shipping_fee.value|default:0 }}"
+               name="shipping_fee" value="{{ form.shipping_fee.value|default:7 }}"
                required>
         {% if form.shipping_fee.errors %}
             <div class="invalid-feedback">{{ form.shipping_fee.errors.0 }}</div>

@@ -2,6 +2,8 @@ from django import forms
 from django.db.models import Max
 from .models import Order, Shop
 from django.utils import timezone
+from storage.models import Warehouse
+from logistics.models import Service
 
 class OrderForm(forms.ModelForm):
     order_type = forms.ChoiceField(
@@ -14,6 +16,40 @@ class OrderForm(forms.ModelForm):
         help_text='订单来源类型'
     )
 
+    # 添加包裹相关字段
+    warehouse = forms.ModelChoiceField(
+        label='发货仓库',
+        queryset=Warehouse.objects.all(),
+        required=True
+    )
+
+    service = forms.ModelChoiceField(
+        label='物流服务',
+        queryset=Service.objects.select_related('carrier').all(),
+        required=True
+    )
+
+    shipping_fee = forms.DecimalField(
+        label='运费',
+        max_digits=10,
+        decimal_places=2,
+        initial=0,
+        required=True
+    )
+
+    tracking_no = forms.CharField(
+        label='跟踪号',
+        max_length=30,
+        required=False
+    )
+
+    pkg_status_code = forms.CharField(
+        label='包裹状态',
+        max_length=4,
+        initial='0',
+        required=True
+    )
+
     class Meta:
         model = Order
         fields = [
@@ -21,7 +57,7 @@ class OrderForm(forms.ModelForm):
             'recipient_name', 'recipient_phone', 'recipient_email',
             'recipient_country', 'recipient_state', 'recipient_city',
             'recipient_address', 'recipient_postcode',
-            'freight',
+            'warehouse', 'service', 'shipping_fee', 'tracking_no', 'pkg_status_code',
             'system_remark', 'cs_remark', 'buyer_remark'
         ]
         widgets = {

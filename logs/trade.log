@@ -1616,3 +1616,676 @@ INFO 2024-12-31 10:22:50,393 views 3680 26092 接收到的购物车数据: [{"sku_id":"16
 INFO 2024-12-31 10:22:50,393 views 3680 26092 解析后的购物车数据: [{'sku_id': '1622', 'qty': 1, 'price': 12, 'discount': 0}]
 INFO 2024-12-31 10:22:50,394 views 3680 26092 正在创建购物车项: {'sku_id': '1622', 'qty': 1, 'price': 12, 'discount': 0}
 INFO 2024-12-31 10:22:50,415 views 3680 26092 购物车数据保存成功
+INFO 2024-12-31 10:53:48,969 views 12184 27040 接收到的购物车数据: [{"sku_id":"1621","qty":1,"price":0,"discount":0}]
+INFO 2024-12-31 10:53:48,971 views 12184 27040 解析后的购物车数据: [{'sku_id': '1621', 'qty': 1, 'price': 0, 'discount': 0}]
+INFO 2024-12-31 10:53:48,971 views 12184 27040 正在创建购物车项: {'sku_id': '1621', 'qty': 1, 'price': 0, 'discount': 0}
+INFO 2024-12-31 10:53:48,993 views 12184 27040 购物车数据保存成功
+INFO 2024-12-31 10:59:23,703 views 21192 12736 接收到的购物车数据: [{"sku_id":"1619","qty":1,"price":12,"discount":0}]
+INFO 2024-12-31 10:59:23,704 views 21192 12736 解析后的购物车数据: [{'sku_id': '1619', 'qty': 1, 'price': 12, 'discount': 0}]
+INFO 2024-12-31 10:59:23,704 views 21192 12736 正在创建购物车项: {'sku_id': '1619', 'qty': 1, 'price': 12, 'discount': 0}
+WARNING 2024-12-31 10:59:23,736 views 21192 12736 订单 IN202412310007 缺少仓库或物流服务信息，跳过创建包裹
+INFO 2024-12-31 10:59:23,742 views 21192 12736 购物车数据保存成功
+INFO 2024-12-31 11:03:35,804 views 25736 27268 接收到的购物车数据: [{"sku_id":"1619","qty":1,"price":3,"discount":0}]
+INFO 2024-12-31 11:03:35,804 views 25736 27268 解析后的购物车数据: [{'sku_id': '1619', 'qty': 1, 'price': 3, 'discount': 0}]
+INFO 2024-12-31 11:03:35,804 views 25736 27268 正在创建购物车项: {'sku_id': '1619', 'qty': 1, 'price': 3, 'discount': 0}
+INFO 2024-12-31 11:03:35,839 views 25736 27268 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 11:03:35,840 views 25736 27268 表单数据: {'order_type': 'influencer', 'order_no': 'IN202412310008', 'platform_order_no': '', 'shop': <Shop: jjewelry ()>, 'recipient_name': 'name', 'recipient_phone': '12345', 'recipient_email': '', 'recipient_country': '1', 'recipient_state': '2', 'recipient_city': '3', 'recipient_address': '5', 'recipient_postcode': '4', 'warehouse': <Warehouse: 番禺仓>, 'service': <Service: ABC - 全球优先>, 'shipping_fee': Decimal('0'), 'tracking_no': '', 'pkg_status_code': '0', 'system_remark': '1', 'cs_remark': '', 'buyer_remark': '12'}
+ERROR 2024-12-31 11:03:35,851 views 25736 27268 创建包裹记录时发生错误: (1364, "Field 'warehouse_id' doesn't have a default value")
+ERROR 2024-12-31 11:03:35,852 views 25736 27268 详细错误信息:
+Traceback (most recent call last):
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\code\magicpaper_v_013\trade\views.py", line 167, in form_valid
+    package = Package.objects.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+INFO 2024-12-31 11:03:35,871 views 25736 27268 购物车数据保存成功
+INFO 2024-12-31 11:04:31,279 views 25736 27268 接收到的购物车数据: [{"sku_id":"1613","qty":1,"price":13,"discount":0}]
+INFO 2024-12-31 11:04:31,280 views 25736 27268 解析后的购物车数据: [{'sku_id': '1613', 'qty': 1, 'price': 13, 'discount': 0}]
+INFO 2024-12-31 11:04:31,280 views 25736 27268 正在创建购物车项: {'sku_id': '1613', 'qty': 1, 'price': 13, 'discount': 0}
+INFO 2024-12-31 11:04:31,321 views 25736 27268 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 11:04:31,321 views 25736 27268 表单数据: {'order_type': 'influencer', 'order_no': 'IN202412310009', 'platform_order_no': '', 'shop': <Shop: jjewelry ()>, 'recipient_name': 'N2', 'recipient_phone': '1', 'recipient_email': '', 'recipient_country': '1', 'recipient_state': '1', 'recipient_city': '2', 'recipient_address': '5', 'recipient_postcode': '3', 'warehouse': <Warehouse: 番禺仓>, 'service': <Service: ABC - 全球优先>, 'shipping_fee': Decimal('0'), 'tracking_no': '', 'pkg_status_code': '0', 'system_remark': '', 'cs_remark': '', 'buyer_remark': ''}
+ERROR 2024-12-31 11:04:31,332 views 25736 27268 创建包裹记录时发生错误: (1364, "Field 'warehouse_id' doesn't have a default value")
+ERROR 2024-12-31 11:04:31,332 views 25736 27268 详细错误信息:
+Traceback (most recent call last):
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\code\magicpaper_v_013\trade\views.py", line 167, in form_valid
+    package = Package.objects.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+INFO 2024-12-31 11:04:31,337 views 25736 27268 购物车数据保存成功
+INFO 2024-12-31 11:05:04,736 views 25736 27268 接收到的购物车数据: [{"sku_id":"1612","qty":1,"price":123,"discount":0}]
+INFO 2024-12-31 11:05:04,737 views 25736 27268 解析后的购物车数据: [{'sku_id': '1612', 'qty': 1, 'price': 123, 'discount': 0}]
+INFO 2024-12-31 11:05:04,737 views 25736 27268 正在创建购物车项: {'sku_id': '1612', 'qty': 1, 'price': 123, 'discount': 0}
+INFO 2024-12-31 11:05:04,772 views 25736 27268 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 11:05:04,773 views 25736 27268 表单数据: {'order_type': 'influencer', 'order_no': 'IN202412310010', 'platform_order_no': '', 'shop': <Shop: jjewelry ()>, 'recipient_name': 'name', 'recipient_phone': '12', 'recipient_email': '', 'recipient_country': '12', 'recipient_state': '12', 'recipient_city': '2334', 'recipient_address': '12345', 'recipient_postcode': '34', 'warehouse': <Warehouse: 番禺仓>, 'service': <Service: ABC - 全球优先>, 'shipping_fee': Decimal('0'), 'tracking_no': '', 'pkg_status_code': '0', 'system_remark': '', 'cs_remark': '', 'buyer_remark': ''}
+ERROR 2024-12-31 11:05:04,783 views 25736 27268 创建包裹记录时发生错误: (1364, "Field 'warehouse_id' doesn't have a default value")
+ERROR 2024-12-31 11:05:04,784 views 25736 27268 详细错误信息:
+Traceback (most recent call last):
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\code\magicpaper_v_013\trade\views.py", line 167, in form_valid
+    package = Package.objects.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+INFO 2024-12-31 11:05:04,798 views 25736 27268 购物车数据保存成功
+INFO 2024-12-31 11:07:27,230 views 23788 21908 接收到的购物车数据: [{"sku_id":"1621","qty":1,"price":12,"discount":0}]
+INFO 2024-12-31 11:07:27,230 views 23788 21908 解析后的购物车数据: [{'sku_id': '1621', 'qty': 1, 'price': 12, 'discount': 0}]
+INFO 2024-12-31 11:07:27,230 views 23788 21908 正在创建购物车项: {'sku_id': '1621', 'qty': 1, 'price': 12, 'discount': 0}
+INFO 2024-12-31 11:07:27,267 views 23788 21908 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 11:07:27,267 views 23788 21908 表单数据: {'order_type': 'influencer', 'order_no': 'IN202412310011', 'platform_order_no': '', 'shop': <Shop: jjewelry ()>, 'recipient_name': 'name', 'recipient_phone': '1', 'recipient_email': '', 'recipient_country': '12', 'recipient_state': '12', 'recipient_city': '12', 'recipient_address': '1232', 'recipient_postcode': '12', 'warehouse': <Warehouse: 番禺仓>, 'service': <Service: ABC - 全球优先>, 'shipping_fee': Decimal('0'), 'tracking_no': '', 'pkg_status_code': '0', 'system_remark': '', 'cs_remark': '', 'buyer_remark': ''}
+ERROR 2024-12-31 11:07:27,278 views 23788 21908 创建包裹记录时发生错误: (1364, "Field 'warehouse_id' doesn't have a default value")
+ERROR 2024-12-31 11:07:27,278 views 23788 21908 详细错误信息:
+Traceback (most recent call last):
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\code\magicpaper_v_013\trade\views.py", line 167, in form_valid
+    package = Package.objects.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+INFO 2024-12-31 11:07:27,288 views 23788 21908 购物车数据保存成功
+INFO 2024-12-31 11:08:37,996 views 23788 21908 接收到的购物车数据: [{"sku_id":"1613","qty":1,"price":1245,"discount":0}]
+INFO 2024-12-31 11:08:37,996 views 23788 21908 解析后的购物车数据: [{'sku_id': '1613', 'qty': 1, 'price': 1245, 'discount': 0}]
+INFO 2024-12-31 11:08:37,997 views 23788 21908 正在创建购物车项: {'sku_id': '1613', 'qty': 1, 'price': 1245, 'discount': 0}
+INFO 2024-12-31 11:08:38,041 views 23788 21908 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 11:08:38,042 views 23788 21908 表单数据: {'order_type': 'influencer', 'order_no': 'IN202412310012', 'platform_order_no': '', 'shop': <Shop: jjewelry ()>, 'recipient_name': '12', 'recipient_phone': '12', 'recipient_email': '', 'recipient_country': '12', 'recipient_state': '1223', 'recipient_city': '23', 'recipient_address': '1342525', 'recipient_postcode': '45', 'warehouse': <Warehouse: 番禺仓>, 'service': <Service: ABC - 全球优先>, 'shipping_fee': Decimal('1'), 'tracking_no': '', 'pkg_status_code': '2', 'system_remark': '', 'cs_remark': '', 'buyer_remark': ''}
+ERROR 2024-12-31 11:08:38,055 views 23788 21908 创建包裹记录时发生错误: (1364, "Field 'warehouse_id' doesn't have a default value")
+ERROR 2024-12-31 11:08:38,055 views 23788 21908 详细错误信息:
+Traceback (most recent call last):
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\code\magicpaper_v_013\trade\views.py", line 167, in form_valid
+    package = Package.objects.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+INFO 2024-12-31 11:08:38,067 views 23788 21908 购物车数据保存成功
+INFO 2024-12-31 11:09:05,508 views 23788 21908 接收到的购物车数据: [{"sku_id":"802","qty":1,"price":123,"discount":0}]
+INFO 2024-12-31 11:09:05,508 views 23788 21908 解析后的购物车数据: [{'sku_id': '802', 'qty': 1, 'price': 123, 'discount': 0}]
+INFO 2024-12-31 11:09:05,509 views 23788 21908 正在创建购物车项: {'sku_id': '802', 'qty': 1, 'price': 123, 'discount': 0}
+INFO 2024-12-31 11:09:05,546 views 23788 21908 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 11:09:05,546 views 23788 21908 表单数据: {'order_type': 'influencer', 'order_no': 'IN202412310013', 'platform_order_no': '', 'shop': <Shop: jjewelry ()>, 'recipient_name': '12', 'recipient_phone': '12', 'recipient_email': '', 'recipient_country': '12', 'recipient_state': '12', 'recipient_city': '12', 'recipient_address': '124', 'recipient_postcode': '12', 'warehouse': <Warehouse: 番禺仓>, 'service': <Service: ABC - 全球优先>, 'shipping_fee': Decimal('0'), 'tracking_no': '', 'pkg_status_code': '0', 'system_remark': '1213', 'cs_remark': '123', 'buyer_remark': '123'}
+ERROR 2024-12-31 11:09:05,557 views 23788 21908 创建包裹记录时发生错误: (1364, "Field 'warehouse_id' doesn't have a default value")
+ERROR 2024-12-31 11:09:05,558 views 23788 21908 详细错误信息:
+Traceback (most recent call last):
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+pymysql.err.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "E:\code\magicpaper_v_013\trade\views.py", line 167, in form_valid
+    package = Package.objects.create(
+              ^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 658, in create
+    obj.save(force_insert=True, using=self.db)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 814, in save
+    self.save_base(
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 877, in save_base
+    updated = self._save_table(
+              ^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1020, in _save_table
+    results = self._do_insert(
+              ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\base.py", line 1061, in _do_insert
+    return manager._insert(
+           ^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\manager.py", line 87, in manager_method
+    return getattr(self.get_queryset(), name)(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\query.py", line 1805, in _insert
+    return query.get_compiler(using=using).execute_sql(returning_fields)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\models\sql\compiler.py", line 1822, in execute_sql
+    cursor.execute(sql, params)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 102, in execute
+    return super().execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 67, in execute
+    return self._execute_with_wrappers(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 80, in _execute_with_wrappers
+    return executor(sql, params, many, context)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 84, in _execute
+    with self.db.wrap_database_errors:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\utils.py", line 91, in __exit__
+    raise dj_exc_value.with_traceback(traceback) from exc_value
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\utils.py", line 89, in _execute
+    return self.cursor.execute(sql, params)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\django\db\backends\mysql\base.py", line 75, in execute
+    return self.cursor.execute(query, args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 153, in execute
+    result = self._query(query)
+             ^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\cursors.py", line 322, in _query
+    conn.query(q)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 563, in query
+    self._affected_rows = self._read_query_result(unbuffered=unbuffered)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 825, in _read_query_result
+    result.read()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 1199, in read
+    first_packet = self.connection._read_packet()
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\connections.py", line 775, in _read_packet
+    packet.raise_for_error()
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\protocol.py", line 219, in raise_for_error
+    err.raise_mysql_exception(self._data)
+  File "C:\Users\75781\AppData\Local\Programs\Python\Python312\Lib\site-packages\pymysql\err.py", line 150, in raise_mysql_exception
+    raise errorclass(errno, errval)
+django.db.utils.OperationalError: (1364, "Field 'warehouse_id' doesn't have a default value")
+INFO 2024-12-31 11:09:05,569 views 23788 21908 购物车数据保存成功
+INFO 2024-12-31 11:11:42,141 views 26356 26140 表单数据:
+INFO 2024-12-31 11:11:42,141 views 26356 26140 order_type: influencer
+INFO 2024-12-31 11:11:42,141 views 26356 26140 order_no: IN202412310014
+INFO 2024-12-31 11:11:42,141 views 26356 26140 platform_order_no: 
+INFO 2024-12-31 11:11:42,141 views 26356 26140 shop: jjewelry ()
+INFO 2024-12-31 11:11:42,141 views 26356 26140 recipient_name: 12
+INFO 2024-12-31 11:11:42,141 views 26356 26140 recipient_phone: 23
+INFO 2024-12-31 11:11:42,141 views 26356 26140 recipient_email: 
+INFO 2024-12-31 11:11:42,141 views 26356 26140 recipient_country: 45
+INFO 2024-12-31 11:11:42,141 views 26356 26140 recipient_state: 45
+INFO 2024-12-31 11:11:42,142 views 26356 26140 recipient_city: 65456
+INFO 2024-12-31 11:11:42,142 views 26356 26140 recipient_address: 1234
+INFO 2024-12-31 11:11:42,142 views 26356 26140 recipient_postcode: 4
+INFO 2024-12-31 11:11:42,142 views 26356 26140 warehouse: 番禺仓
+INFO 2024-12-31 11:11:42,142 views 26356 26140 service: ABC - 全球优先
+INFO 2024-12-31 11:11:42,142 views 26356 26140 shipping_fee: 0
+INFO 2024-12-31 11:11:42,143 views 26356 26140 tracking_no: 
+INFO 2024-12-31 11:11:42,143 views 26356 26140 pkg_status_code: 0
+INFO 2024-12-31 11:11:42,143 views 26356 26140 system_remark: 
+INFO 2024-12-31 11:11:42,143 views 26356 26140 cs_remark: 
+INFO 2024-12-31 11:11:42,143 views 26356 26140 buyer_remark: 
+INFO 2024-12-31 11:11:42,154 views 26356 26140 接收到的购物车数据: [{"sku_id":"1621","qty":1,"price":12,"discount":0}]
+INFO 2024-12-31 11:11:42,154 views 26356 26140 解析后的购物车数据: [{'sku_id': '1621', 'qty': 1, 'price': 12, 'discount': 0}]
+INFO 2024-12-31 11:11:42,155 views 26356 26140 正在创建购物车项: {'sku_id': '1621', 'qty': 1, 'price': 12, 'discount': 0}
+INFO 2024-12-31 11:11:42,188 views 26356 26140 准备创建包裹，仓库: 番禺仓, 物流服务: ABC - 全球优先
+INFO 2024-12-31 11:11:42,188 views 26356 26140 POST数据: <QueryDict: {'csrfmiddlewaretoken': ['1H9nQYTn2xK73ibvpeYC8fefklESslLWk5I070SiSm80GtUI2ihIyYDhJIOCOtMb'], 'order_type': ['influencer'], 'order_no': ['IN202412310014'], 'platform_order_no': [''], 'shop': ['1'], 'freight': ['12'], 'recipient_name': ['12'], 'recipient_phone': ['23'], 'recipient_email': [''], 'recipient_country': ['45'], 'recipient_state': ['45'], 'recipient_city': ['65456'], 'recipient_postcode': ['4'], 'recipient_address': ['1234'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'cart_data': ['[{"sku_id":"1621","qty":1,"price":12,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['0'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 11:11:42,199 views 26356 26140 为订单 IN202412310014 创建包裹成功，包裹ID: 26
+INFO 2024-12-31 11:11:42,199 views 26356 26140 购物车数据保存成功

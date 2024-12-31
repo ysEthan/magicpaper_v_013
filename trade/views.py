@@ -10,6 +10,8 @@ from django.utils import timezone
 import logging
 from .models import Order, Shop, Cart
 from gallery.models import SKU
+from storage.models import Warehouse
+from logistics.models import Service, Package
 from .forms import OrderForm
 from . import sync
 import json
@@ -84,6 +86,9 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['skus'] = SKU.objects.filter(status=True).select_related('spu')
+        # 添加仓库和物流服务数据
+        context['warehouses'] = Warehouse.objects.all()
+        context['services'] = Service.objects.select_related('carrier').all()
         return context
 
     def form_valid(self, form):
@@ -94,6 +99,11 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
         except Shop.DoesNotExist:
             logger.error("找不到默认店铺(ID=1)")
             raise ValueError("找不到默认店铺，无法创建订单")
+        
+        # 记录所有表单数据
+        logger.info("表单数据:")
+        for field in form.cleaned_data:
+            logger.info(f"{field}: {form.cleaned_data[field]}")
         
         # 设置初始支付金额为0，后续由购物车计算
         form.instance.paid_amount = 0
@@ -111,6 +121,9 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
                 # 计算订单总金额
                 total_amount = 0
                 
+                # 准备包裹的商品信息
+                package_items = []
+                
                 for item in cart_items:
                     logger.info(f"正在创建购物车项: {item}")
                     qty = int(item['qty'])
@@ -119,7 +132,7 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
                     actual_price = price * qty - discount
                     total_amount += actual_price
                     
-                    Cart.objects.create(
+                    cart = Cart.objects.create(
                         order=self.object,
                         sku_id=item['sku_id'],
                         qty=qty,
@@ -128,10 +141,57 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
                         actual_price=actual_price,
                         cost=0  # 这里可以根据需要设置成本价
                     )
+                    
+                    # 获取SKU信息，添加到包裹商品列表
+                    sku = SKU.objects.get(id=item['sku_id'])
+                    package_items.append({
+                        'sku_id': sku.id,
+                        'sku_code': sku.sku_code,
+                        'sku_name': sku.sku_name,
+                        'qty': qty,
+                        'weight': float(sku.weight) if sku.weight else 0,
+                        'length': float(sku.length) if sku.length else 0,
+                        'width': float(sku.width) if sku.width else 0,
+                        'height': float(sku.height) if sku.height else 0
+                    })
                 
                 # 更新订单的支付金额（加上运费）
-                self.object.paid_amount = total_amount + float(form.cleaned_data.get('freight', 0))
+                shipping_fee = float(form.cleaned_data.get('shipping_fee', 0))
+                self.object.paid_amount = total_amount + shipping_fee
                 self.object.save()
+                
+                # 创建包裹记录
+                try:
+                    warehouse = form.cleaned_data.get('warehouse')
+                    service = form.cleaned_data.get('service')
+                    
+                    logger.info(f"准备创建包裹，仓库: {warehouse}, 物流服务: {service}")
+                    logger.info(f"POST数据: {self.request.POST}")
+                    
+                    if warehouse and service:
+                        try:
+                            package = Package.objects.create(
+                                order=self.object,
+                                warehouse=warehouse,
+                                service=service,
+                                tracking_no=form.cleaned_data.get('tracking_no', ''),
+                                pkg_status_code=form.cleaned_data.get('pkg_status_code', '0'),
+                                shipping_fee=shipping_fee,
+                                items=package_items
+                            )
+                            logger.info(f"为订单 {self.object.order_no} 创建包裹成功，包裹ID: {package.id}")
+                        except Exception as e:
+                            logger.error(f"创建包裹时出错: {str(e)}")
+                            logger.error(f"参数: order={self.object}, service={service}, items={package_items}")
+                            raise
+                    else:
+                        logger.warning(f"订单 {self.object.order_no} 缺少仓库或物流服务信息，跳过创建包裹")
+                        logger.warning(f"warehouse={warehouse}, service={service}")
+                
+                except Exception as e:
+                    logger.error(f"创建包裹记录时发生错误: {str(e)}")
+                    logger.exception("详细错误信息:")
+                    # 不抛出异常，让订单创建继续完成
                 
                 logger.info("购物车数据保存成功")
             except Exception as e:
@@ -155,6 +215,9 @@ class OrderUpdateView(LoginRequiredMixin, UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['skus'] = SKU.objects.filter(status=True).select_related('spu')
+        # 添加仓库和物流服务数据
+        context['warehouses'] = Warehouse.objects.all()
+        context['services'] = Service.objects.select_related('carrier').all()
         return context
 
     def form_valid(self, form):

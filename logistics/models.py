@@ -58,6 +58,13 @@ class Package(models.Model):
         verbose_name='订单',
         related_name='package'
     )
+    warehouse = models.ForeignKey(
+        'storage.Warehouse',
+        on_delete=models.PROTECT,
+        verbose_name='发货仓库',
+        null=True,
+        blank=True
+    )
     tracking_no = models.CharField(
         '跟踪号',
         max_length=30,

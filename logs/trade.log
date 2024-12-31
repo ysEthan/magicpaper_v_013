@@ -2904,3 +2904,182 @@ INFO 2024-12-31 12:03:49,121 views 17952 11360 ×¼±¸´´½¨°ü¹ü£¬²Ö¿â: ·¬Ø®²Ö, ÎïÁ÷·
 INFO 2024-12-31 12:03:49,121 views 17952 11360 POSTÊý¾Ý: <QueryDict: {'csrfmiddlewaretoken': ['K9TeVWDO2uR9ZsUesuewDOUCcCMImXHy3xsRcYCJSjf2CDDr5yxC3xjEBZWsI5IN'], 'order_type': ['influencer'], 'order_no': ['IN202412310032'], 'platform_order_no': [''], 'shop': ['1'], 'freight': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['ÖÐ¹ú'], 'recipient_state': ['¹ã¶«'], 'recipient_city': ['¹ãÖÝ'], 'recipient_postcode': ['510000'], 'recipient_address': ['ËÄº£³Ç4¶°'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'cart_data': ['[{"sku_id":"1620","qty":1,"price":2,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
 INFO 2024-12-31 12:03:49,132 views 17952 11360 Îª¶©µ¥ IN202412310032 ´´½¨°ü¹ü³É¹¦£¬°ü¹üID: 44
 INFO 2024-12-31 12:03:49,132 views 17952 11360 ¹ºÎï³µÊý¾Ý±£´æ³É¹¦
+INFO 2024-12-31 12:07:33,570 views 16800 15768 ±íµ¥Êý¾Ý:
+INFO 2024-12-31 12:07:33,570 views 16800 15768 order_type: influencer
+INFO 2024-12-31 12:07:33,570 views 16800 15768 order_no: IN202412310033
+INFO 2024-12-31 12:07:33,570 views 16800 15768 platform_order_no: 
+INFO 2024-12-31 12:07:33,570 views 16800 15768 shop: jjewelry ()
+INFO 2024-12-31 12:07:33,570 views 16800 15768 recipient_name: name
+INFO 2024-12-31 12:07:33,570 views 16800 15768 recipient_phone: 1234567890
+INFO 2024-12-31 12:07:33,570 views 16800 15768 recipient_email: email@example.com
+INFO 2024-12-31 12:07:33,570 views 16800 15768 recipient_country: ÖÐ¹ú
+INFO 2024-12-31 12:07:33,571 views 16800 15768 recipient_state: ¹ã¶«
+INFO 2024-12-31 12:07:33,571 views 16800 15768 recipient_city: ¹ãÖÝ
+INFO 2024-12-31 12:07:33,571 views 16800 15768 recipient_address: ËÄº£³Ç4¶°
+INFO 2024-12-31 12:07:33,571 views 16800 15768 recipient_postcode: 510000
+INFO 2024-12-31 12:07:33,571 views 16800 15768 warehouse: ·¬Ø®²Ö
+INFO 2024-12-31 12:07:33,571 views 16800 15768 service: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:07:33,571 views 16800 15768 shipping_fee: 7
+INFO 2024-12-31 12:07:33,571 views 16800 15768 tracking_no: 
+INFO 2024-12-31 12:07:33,571 views 16800 15768 pkg_status_code: 0
+INFO 2024-12-31 12:07:33,571 views 16800 15768 system_remark: 
+INFO 2024-12-31 12:07:33,571 views 16800 15768 cs_remark: 
+INFO 2024-12-31 12:07:33,572 views 16800 15768 buyer_remark: 
+INFO 2024-12-31 12:07:33,584 views 16800 15768 ½ÓÊÕµ½µÄ¹ºÎï³µÊý¾Ý: [{"sku_id":"1619","qty":1,"price":2,"discount":0}]
+INFO 2024-12-31 12:07:33,584 views 16800 15768 ½âÎöºóµÄ¹ºÎï³µÊý¾Ý: [{'sku_id': '1619', 'qty': 1, 'price': 2, 'discount': 0}]
+INFO 2024-12-31 12:07:33,584 views 16800 15768 ÕýÔÚ´´½¨¹ºÎï³µÏî: {'sku_id': '1619', 'qty': 1, 'price': 2, 'discount': 0}
+INFO 2024-12-31 12:07:33,619 views 16800 15768 ×¼±¸´´½¨°ü¹ü£¬²Ö¿â: ·¬Ø®²Ö, ÎïÁ÷·þÎñ: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:07:33,619 views 16800 15768 POSTÊý¾Ý: <QueryDict: {'csrfmiddlewaretoken': ['TsGfcqwWivlPq47X9aQtec2Rbv7jwOrscQfStsvR8kJI3fQaMe9zEVrTASh3SWsH'], 'order_type': ['influencer'], 'order_no': ['IN202412310033'], 'platform_order_no': [''], 'shop': ['1'], 'freight': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['ÖÐ¹ú'], 'recipient_state': ['¹ã¶«'], 'recipient_city': ['¹ãÖÝ'], 'recipient_postcode': ['510000'], 'recipient_address': ['ËÄº£³Ç4¶°'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'cart_data': ['[{"sku_id":"1619","qty":1,"price":2,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 12:07:33,630 views 16800 15768 Îª¶©µ¥ IN202412310033 ´´½¨°ü¹ü³É¹¦£¬°ü¹üID: 45
+INFO 2024-12-31 12:07:33,630 views 16800 15768 ¹ºÎï³µÊý¾Ý±£´æ³É¹¦
+INFO 2024-12-31 12:10:06,861 views 23672 21920 ±íµ¥Êý¾Ý:
+INFO 2024-12-31 12:10:06,862 views 23672 21920 order_type: influencer
+INFO 2024-12-31 12:10:06,862 views 23672 21920 order_no: IN202412310034
+INFO 2024-12-31 12:10:06,862 views 23672 21920 platform_order_no: 
+INFO 2024-12-31 12:10:06,862 views 23672 21920 shop: jjewelry ()
+INFO 2024-12-31 12:10:06,863 views 23672 21920 recipient_name: name
+INFO 2024-12-31 12:10:06,863 views 23672 21920 recipient_phone: 1234567890
+INFO 2024-12-31 12:10:06,863 views 23672 21920 recipient_email: email@example.com
+INFO 2024-12-31 12:10:06,863 views 23672 21920 recipient_country: ÖÐ¹ú
+INFO 2024-12-31 12:10:06,863 views 23672 21920 recipient_state: ¹ã¶«
+INFO 2024-12-31 12:10:06,863 views 23672 21920 recipient_city: ¹ãÖÝ
+INFO 2024-12-31 12:10:06,864 views 23672 21920 recipient_address: ËÄº£³Ç4¶°
+INFO 2024-12-31 12:10:06,864 views 23672 21920 recipient_postcode: 510000
+INFO 2024-12-31 12:10:06,864 views 23672 21920 warehouse: ·¬Ø®²Ö
+INFO 2024-12-31 12:10:06,864 views 23672 21920 service: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:10:06,864 views 23672 21920 shipping_fee: 7
+INFO 2024-12-31 12:10:06,864 views 23672 21920 tracking_no: 
+INFO 2024-12-31 12:10:06,865 views 23672 21920 pkg_status_code: 0
+INFO 2024-12-31 12:10:06,865 views 23672 21920 system_remark: 
+INFO 2024-12-31 12:10:06,865 views 23672 21920 cs_remark: 
+INFO 2024-12-31 12:10:06,865 views 23672 21920 buyer_remark: 
+INFO 2024-12-31 12:10:06,877 views 23672 21920 ½ÓÊÕµ½µÄ¹ºÎï³µÊý¾Ý: [{"sku_id":"1621","qty":1,"price":2,"discount":0}]
+INFO 2024-12-31 12:10:06,877 views 23672 21920 ½âÎöºóµÄ¹ºÎï³µÊý¾Ý: [{'sku_id': '1621', 'qty': 1, 'price': 2, 'discount': 0}]
+INFO 2024-12-31 12:10:06,878 views 23672 21920 ÕýÔÚ´´½¨¹ºÎï³µÏî: {'sku_id': '1621', 'qty': 1, 'price': 2, 'discount': 0}
+INFO 2024-12-31 12:10:06,913 views 23672 21920 ×¼±¸´´½¨°ü¹ü£¬²Ö¿â: ·¬Ø®²Ö, ÎïÁ÷·þÎñ: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:10:06,913 views 23672 21920 POSTÊý¾Ý: <QueryDict: {'csrfmiddlewaretoken': ['tx2vWZByhamgOqsHc92fvJzqpuHm7uC7MVB8d1At7ZK9rBbUPdllVsYsORR6tCDm'], 'order_type': ['influencer'], 'order_no': ['IN202412310034'], 'platform_order_no': [''], 'shop': ['1'], 'freight': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['ÖÐ¹ú'], 'recipient_state': ['¹ã¶«'], 'recipient_city': ['¹ãÖÝ'], 'recipient_postcode': ['510000'], 'recipient_address': ['ËÄº£³Ç4¶°'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'cart_data': ['[{"sku_id":"1621","qty":1,"price":2,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+ERROR 2024-12-31 12:10:06,914 views 23672 21920 ´´½¨°ü¹üÊ±³ö´í: name 'shipping_fee' is not defined
+ERROR 2024-12-31 12:10:06,914 views 23672 21920 ²ÎÊý: order=IN202412310034, service=ABC - È«ÇòÓÅÏÈ, items=[{'sku_id': 1621, 'sku_code': 'NE304W01', 'sku_name': 'îÑ¸Ö·ÂÕäÖé°×½ðÉ«¾±Á´41+3.5cm', 'qty': 1, 'weight': 0, 'length': 0, 'width': 0, 'height': 0}]
+ERROR 2024-12-31 12:10:06,914 views 23672 21920 ´´½¨°ü¹ü¼ÇÂ¼Ê±·¢Éú´íÎó: name 'shipping_fee' is not defined
+ERROR 2024-12-31 12:10:06,914 views 23672 21920 ÏêÏ¸´íÎóÐÅÏ¢:
+Traceback (most recent call last):
+  File "E:\code\magicpaper_v_013\trade\views.py", line 180, in form_valid
+    shipping_fee=shipping_fee,
+                 ^^^^^^^^^^^^
+NameError: name 'shipping_fee' is not defined
+INFO 2024-12-31 12:10:06,928 views 23672 21920 ¹ºÎï³µÊý¾Ý±£´æ³É¹¦
+INFO 2024-12-31 12:14:56,945 views 25856 3144 ±íµ¥Êý¾Ý:
+INFO 2024-12-31 12:14:56,946 views 25856 3144 order_type: influencer
+INFO 2024-12-31 12:14:56,946 views 25856 3144 order_no: IN202412310035
+INFO 2024-12-31 12:14:56,947 views 25856 3144 platform_order_no: 
+INFO 2024-12-31 12:14:56,948 views 25856 3144 shop: jjewelry ()
+INFO 2024-12-31 12:14:56,949 views 25856 3144 recipient_name: name
+INFO 2024-12-31 12:14:56,949 views 25856 3144 recipient_phone: 1234567890
+INFO 2024-12-31 12:14:56,950 views 25856 3144 recipient_email: email@example.com
+INFO 2024-12-31 12:14:56,950 views 25856 3144 recipient_country: ÖÐ¹ú
+INFO 2024-12-31 12:14:56,951 views 25856 3144 recipient_state: ¹ã¶«
+INFO 2024-12-31 12:14:56,951 views 25856 3144 recipient_city: ¹ãÖÝ
+INFO 2024-12-31 12:14:56,951 views 25856 3144 recipient_address: ËÄº£³Ç4¶°
+INFO 2024-12-31 12:14:56,952 views 25856 3144 recipient_postcode: 510000
+INFO 2024-12-31 12:14:56,952 views 25856 3144 warehouse: ·¬Ø®²Ö
+INFO 2024-12-31 12:14:56,952 views 25856 3144 service: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:14:56,953 views 25856 3144 shipping_fee: 7
+INFO 2024-12-31 12:14:56,953 views 25856 3144 tracking_no: 
+INFO 2024-12-31 12:14:56,954 views 25856 3144 pkg_status_code: 0
+INFO 2024-12-31 12:14:56,954 views 25856 3144 system_remark: 
+INFO 2024-12-31 12:14:56,955 views 25856 3144 cs_remark: 
+INFO 2024-12-31 12:14:56,955 views 25856 3144 buyer_remark: 
+INFO 2024-12-31 12:14:56,971 views 25856 3144 ½ÓÊÕµ½µÄ¹ºÎï³µÊý¾Ý: [{"sku_id":"1621","qty":1,"price":2,"discount":0}]
+INFO 2024-12-31 12:14:56,972 views 25856 3144 ½âÎöºóµÄ¹ºÎï³µÊý¾Ý: [{'sku_id': '1621', 'qty': 1, 'price': 2, 'discount': 0}]
+INFO 2024-12-31 12:14:56,972 views 25856 3144 ÕýÔÚ´´½¨¹ºÎï³µÏî: {'sku_id': '1621', 'qty': 1, 'price': 2, 'discount': 0}
+ERROR 2024-12-31 12:14:56,999 views 25856 3144 ±£´æ¹ºÎï³µÊý¾ÝÊ±·¢Éú´íÎó: 'freight'
+ERROR 2024-12-31 12:14:57,000 views 25856 3144 ÏêÏ¸´íÎóÐÅÏ¢:
+Traceback (most recent call last):
+  File "E:\code\magicpaper_v_013\trade\views.py", line 159, in form_valid
+    freight = form.cleaned_data['freight']
+              ~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+KeyError: 'freight'
+INFO 2024-12-31 12:21:37,225 views 18112 20288 ±íµ¥Êý¾Ý:
+INFO 2024-12-31 12:21:37,228 views 18112 20288 order_type: influencer
+INFO 2024-12-31 12:21:37,229 views 18112 20288 order_no: IN202412310036
+INFO 2024-12-31 12:21:37,229 views 18112 20288 platform_order_no: 
+INFO 2024-12-31 12:21:37,229 views 18112 20288 shop: jjewelry ()
+INFO 2024-12-31 12:21:37,230 views 18112 20288 recipient_name: name
+INFO 2024-12-31 12:21:37,230 views 18112 20288 recipient_phone: 1234567890
+INFO 2024-12-31 12:21:37,230 views 18112 20288 recipient_email: email@example.com
+INFO 2024-12-31 12:21:37,230 views 18112 20288 recipient_country: ÖÐ¹ú
+INFO 2024-12-31 12:21:37,231 views 18112 20288 recipient_state: ¹ã¶«
+INFO 2024-12-31 12:21:37,231 views 18112 20288 recipient_city: ¹ãÖÝ
+INFO 2024-12-31 12:21:37,231 views 18112 20288 recipient_address: ËÄº£³Ç4¶°
+INFO 2024-12-31 12:21:37,232 views 18112 20288 recipient_postcode: 510000
+INFO 2024-12-31 12:21:37,233 views 18112 20288 warehouse: ·¬Ø®²Ö
+INFO 2024-12-31 12:21:37,233 views 18112 20288 service: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:21:37,233 views 18112 20288 shipping_fee: 7
+INFO 2024-12-31 12:21:37,234 views 18112 20288 tracking_no: 
+INFO 2024-12-31 12:21:37,234 views 18112 20288 pkg_status_code: 0
+INFO 2024-12-31 12:21:37,235 views 18112 20288 system_remark: 
+INFO 2024-12-31 12:21:37,236 views 18112 20288 cs_remark: 
+INFO 2024-12-31 12:21:37,236 views 18112 20288 buyer_remark: 
+INFO 2024-12-31 12:21:37,249 views 18112 20288 ½ÓÊÕµ½µÄ¹ºÎï³µÊý¾Ý: [{"sku_id":"1620","qty":1,"price":2,"discount":0}]
+INFO 2024-12-31 12:21:37,250 views 18112 20288 ½âÎöºóµÄ¹ºÎï³µÊý¾Ý: [{'sku_id': '1620', 'qty': 1, 'price': 2, 'discount': 0}]
+INFO 2024-12-31 12:21:37,250 views 18112 20288 ÕýÔÚ´´½¨¹ºÎï³µÏî: {'sku_id': '1620', 'qty': 1, 'price': 2, 'discount': 0}
+INFO 2024-12-31 12:21:37,288 views 18112 20288 ×¼±¸´´½¨°ü¹ü£¬²Ö¿â: ·¬Ø®²Ö, ÎïÁ÷·þÎñ: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:21:37,289 views 18112 20288 POSTÊý¾Ý: <QueryDict: {'csrfmiddlewaretoken': ['0AgQezBicBX1rZmFIEHsQBaXD7JyYULJjYPtvBAd2qlU4a5SlI0ygkzZ2uTik2MY'], 'order_type': ['influencer'], 'order_no': ['IN202412310036'], 'platform_order_no': [''], 'shop': ['1'], 'freight': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['ÖÐ¹ú'], 'recipient_state': ['¹ã¶«'], 'recipient_city': ['¹ãÖÝ'], 'recipient_postcode': ['510000'], 'recipient_address': ['ËÄº£³Ç4¶°'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'cart_data': ['[{"sku_id":"1620","qty":1,"price":2,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 12:21:37,304 views 18112 20288 Îª¶©µ¥ IN202412310036 ´´½¨°ü¹ü³É¹¦£¬°ü¹üID: 46
+INFO 2024-12-31 12:21:37,305 views 18112 20288 ¹ºÎï³µÊý¾Ý±£´æ³É¹¦
+INFO 2024-12-31 12:22:28,331 views 1928 18496 ±íµ¥Êý¾Ý:
+INFO 2024-12-31 12:22:28,332 views 1928 18496 order_type: influencer
+INFO 2024-12-31 12:22:28,332 views 1928 18496 order_no: IN202412310037
+INFO 2024-12-31 12:22:28,332 views 1928 18496 platform_order_no: 
+INFO 2024-12-31 12:22:28,332 views 1928 18496 shop: jjewelry ()
+INFO 2024-12-31 12:22:28,332 views 1928 18496 recipient_name: name
+INFO 2024-12-31 12:22:28,332 views 1928 18496 recipient_phone: 1234567890
+INFO 2024-12-31 12:22:28,332 views 1928 18496 recipient_email: email@example.com
+INFO 2024-12-31 12:22:28,332 views 1928 18496 recipient_country: ÖÐ¹ú
+INFO 2024-12-31 12:22:28,332 views 1928 18496 recipient_state: ¹ã¶«
+INFO 2024-12-31 12:22:28,332 views 1928 18496 recipient_city: ¹ãÖÝ
+INFO 2024-12-31 12:22:28,332 views 1928 18496 recipient_address: ËÄº£³Ç4¶°
+INFO 2024-12-31 12:22:28,332 views 1928 18496 recipient_postcode: 510000
+INFO 2024-12-31 12:22:28,332 views 1928 18496 warehouse: ·¬Ø®²Ö
+INFO 2024-12-31 12:22:28,332 views 1928 18496 service: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:22:28,333 views 1928 18496 shipping_fee: 7
+INFO 2024-12-31 12:22:28,333 views 1928 18496 tracking_no: 
+INFO 2024-12-31 12:22:28,333 views 1928 18496 pkg_status_code: 0
+INFO 2024-12-31 12:22:28,333 views 1928 18496 system_remark: 
+INFO 2024-12-31 12:22:28,333 views 1928 18496 cs_remark: 
+INFO 2024-12-31 12:22:28,333 views 1928 18496 buyer_remark: 
+INFO 2024-12-31 12:22:28,344 views 1928 18496 ½ÓÊÕµ½µÄ¹ºÎï³µÊý¾Ý: [{"sku_id":"1621","qty":1,"price":2,"discount":0}]
+INFO 2024-12-31 12:22:28,344 views 1928 18496 ½âÎöºóµÄ¹ºÎï³µÊý¾Ý: [{'sku_id': '1621', 'qty': 1, 'price': 2, 'discount': 0}]
+INFO 2024-12-31 12:22:28,344 views 1928 18496 ÕýÔÚ´´½¨¹ºÎï³µÏî: {'sku_id': '1621', 'qty': 1, 'price': 2, 'discount': 0}
+INFO 2024-12-31 12:22:28,374 views 1928 18496 ×¼±¸´´½¨°ü¹ü£¬²Ö¿â: ·¬Ø®²Ö, ÎïÁ÷·þÎñ: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:22:28,374 views 1928 18496 POSTÊý¾Ý: <QueryDict: {'csrfmiddlewaretoken': ['e4X7QSuUMthzUkRqXqByYTkfzgD4xHOwxswK7UtPCiFsxvADAuUEoCJhYDNOTPPL'], 'order_type': ['influencer'], 'order_no': ['IN202412310037'], 'platform_order_no': [''], 'shop': ['1'], 'freight': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['ÖÐ¹ú'], 'recipient_state': ['¹ã¶«'], 'recipient_city': ['¹ãÖÝ'], 'recipient_postcode': ['510000'], 'recipient_address': ['ËÄº£³Ç4¶°'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'cart_data': ['[{"sku_id":"1621","qty":1,"price":2,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 12:22:28,384 views 1928 18496 Îª¶©µ¥ IN202412310037 ´´½¨°ü¹ü³É¹¦£¬°ü¹üID: 47
+INFO 2024-12-31 12:22:28,384 views 1928 18496 ¹ºÎï³µÊý¾Ý±£´æ³É¹¦
+INFO 2024-12-31 12:25:04,947 views 1928 18496 ±íµ¥Êý¾Ý:
+INFO 2024-12-31 12:25:04,947 views 1928 18496 order_type: influencer
+INFO 2024-12-31 12:25:04,947 views 1928 18496 order_no: IN202412310038
+INFO 2024-12-31 12:25:04,947 views 1928 18496 platform_order_no: 
+INFO 2024-12-31 12:25:04,947 views 1928 18496 shop: jjewelry ()
+INFO 2024-12-31 12:25:04,947 views 1928 18496 recipient_name: name
+INFO 2024-12-31 12:25:04,948 views 1928 18496 recipient_phone: 1234567890
+INFO 2024-12-31 12:25:04,948 views 1928 18496 recipient_email: email@example.com
+INFO 2024-12-31 12:25:04,948 views 1928 18496 recipient_country: ÖÐ¹ú
+INFO 2024-12-31 12:25:04,948 views 1928 18496 recipient_state: ¹ã¶«
+INFO 2024-12-31 12:25:04,948 views 1928 18496 recipient_city: ¹ãÖÝ
+INFO 2024-12-31 12:25:04,948 views 1928 18496 recipient_address: ËÄº£³Ç4¶°
+INFO 2024-12-31 12:25:04,948 views 1928 18496 recipient_postcode: 510000
+INFO 2024-12-31 12:25:04,948 views 1928 18496 warehouse: ·¬Ø®²Ö
+INFO 2024-12-31 12:25:04,948 views 1928 18496 service: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:25:04,948 views 1928 18496 shipping_fee: 7
+INFO 2024-12-31 12:25:04,948 views 1928 18496 tracking_no: 
+INFO 2024-12-31 12:25:04,948 views 1928 18496 pkg_status_code: 0
+INFO 2024-12-31 12:25:04,948 views 1928 18496 system_remark: 
+INFO 2024-12-31 12:25:04,948 views 1928 18496 cs_remark: 
+INFO 2024-12-31 12:25:04,949 views 1928 18496 buyer_remark: 
+INFO 2024-12-31 12:25:04,960 views 1928 18496 ½ÓÊÕµ½µÄ¹ºÎï³µÊý¾Ý: [{"sku_id":"1620","qty":1,"price":2,"discount":0}]
+INFO 2024-12-31 12:25:04,960 views 1928 18496 ½âÎöºóµÄ¹ºÎï³µÊý¾Ý: [{'sku_id': '1620', 'qty': 1, 'price': 2, 'discount': 0}]
+INFO 2024-12-31 12:25:04,960 views 1928 18496 ÕýÔÚ´´½¨¹ºÎï³µÏî: {'sku_id': '1620', 'qty': 1, 'price': 2, 'discount': 0}
+INFO 2024-12-31 12:25:04,992 views 1928 18496 ×¼±¸´´½¨°ü¹ü£¬²Ö¿â: ·¬Ø®²Ö, ÎïÁ÷·þÎñ: ABC - È«ÇòÓÅÏÈ
+INFO 2024-12-31 12:25:04,992 views 1928 18496 POSTÊý¾Ý: <QueryDict: {'csrfmiddlewaretoken': ['XT9eDmX8bebKmIXQSOaZTQ8kwaelBZmgghIRUoW313zDZTG3vSt5jzxmVxo5X7nv'], 'order_type': ['influencer'], 'order_no': ['IN202412310038'], 'platform_order_no': [''], 'shop': ['1'], 'freight': ['1'], 'recipient_name': ['name'], 'recipient_phone': ['1234567890'], 'recipient_email': ['email@example.com'], 'recipient_country': ['ÖÐ¹ú'], 'recipient_state': ['¹ã¶«'], 'recipient_city': ['¹ãÖÝ'], 'recipient_postcode': ['510000'], 'recipient_address': ['ËÄº£³Ç4¶°'], 'buyer_remark': [''], 'system_remark': [''], 'cs_remark': [''], 'sku_id': [''], 'cart_data': ['[{"sku_id":"1620","qty":1,"price":2,"discount":0}]'], 'warehouse': ['2'], 'service': ['1'], 'shipping_fee': ['7'], 'pkg_status_code': ['0'], 'tracking_no': ['']}>
+INFO 2024-12-31 12:25:05,004 views 1928 18496 Îª¶©µ¥ IN202412310038 ´´½¨°ü¹ü³É¹¦£¬°ü¹üID: 48
+INFO 2024-12-31 12:25:05,004 views 1928 18496 ¹ºÎï³µÊý¾Ý±£´æ³É¹¦

@@ -29,12 +29,22 @@ class OrderForm(forms.ModelForm):
         required=True
     )
 
-    shipping_fee = forms.DecimalField(
-        label='运费',
+    freight = forms.DecimalField(
+        label='用户支付运费',
         max_digits=10,
         decimal_places=2,
         initial=0,
-        required=True
+        required=True,
+        help_text='用户实际支付的运费'
+    )
+
+    shipping_fee = forms.DecimalField(
+        label='物流成本',
+        max_digits=10,
+        decimal_places=2,
+        initial=0,
+        required=True,
+        help_text='实际物流成本'
     )
 
     tracking_no = forms.CharField(
@@ -57,7 +67,7 @@ class OrderForm(forms.ModelForm):
             'recipient_name', 'recipient_phone', 'recipient_email',
             'recipient_country', 'recipient_state', 'recipient_city',
             'recipient_address', 'recipient_postcode',
-            'warehouse', 'service', 'shipping_fee', 'tracking_no', 'pkg_status_code',
+            'warehouse', 'service', 'freight', 'shipping_fee', 'tracking_no', 'pkg_status_code',
             'system_remark', 'cs_remark', 'buyer_remark'
         ]
         widgets = {

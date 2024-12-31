@@ -155,9 +155,9 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
                         'height': float(sku.height) if sku.height else 0
                     })
                 
-                # 更新订单的支付金额（加上运费）
-                shipping_fee = float(form.cleaned_data.get('shipping_fee', 0))
-                self.object.paid_amount = total_amount + shipping_fee
+                # 更新订单的支付金额（商品金额 + 用户支付运费）
+                freight = float(form.cleaned_data.get('freight', 0))
+                self.object.paid_amount = total_amount + freight
                 self.object.save()
                 
                 # 创建包裹记录
@@ -176,7 +176,7 @@ class OrderCreateView(LoginRequiredMixin, CreateView):
                                 service=service,
                                 tracking_no=form.cleaned_data.get('tracking_no', ''),
                                 pkg_status_code=form.cleaned_data.get('pkg_status_code', '0'),
-                                shipping_fee=shipping_fee,
+                                shipping_fee=form.cleaned_data.get('shipping_fee', 0),  # 使用物流成本
                                 items=package_items
                             )
                             logger.info(f"为订单 {self.object.order_no} 创建包裹成功，包裹ID: {package.id}")
@@ -253,8 +253,9 @@ class OrderUpdateView(LoginRequiredMixin, UpdateView):
                         cost=0  # 这里可以根据需要设置成本价
                     )
                 
-                # 更新订单的支付金额（加上运费）
-                self.object.paid_amount = total_amount + float(form.cleaned_data.get('freight', 0))
+                # 更新订单的支付金额（商品金额 + 用户支付运费）
+                freight = float(form.cleaned_data.get('freight', 0))
+                self.object.paid_amount = total_amount + freight
                 self.object.save()
                 
                 logger.info("购物车数据更新成功")

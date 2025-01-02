@@ -42,7 +42,7 @@ def sync_stock_data(page=1):
         body = {
             "page_size": 100,
             "page_no": page,
-            "warehouseNo": "7",
+            "warehouseNo": "8",
             "warehouseType": 1,
             "employeeId": 1
         }

@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator
 from gallery.models import SKU
+from procurement.models import PurchaseOrderDetail
 
 class Warehouse(models.Model):
     """仓库模型"""
@@ -54,6 +55,54 @@ class Warehouse(models.Model):
 
     def __str__(self):
         return self.name
+
+class Batch(models.Model):
+    """批次信息表"""
+    
+    id = models.AutoField(
+        primary_key=True,
+        verbose_name='批次ID'
+    )
+    
+    purchase_order_detail = models.ForeignKey(
+        PurchaseOrderDetail,
+        on_delete=models.PROTECT,
+        verbose_name='采购明细'
+    )
+    
+    created_at = models.DateTimeField(
+        auto_now_add=True,
+        verbose_name='创建时间'
+    )
+    
+    updated_at = models.DateTimeField(
+        auto_now=True,
+        verbose_name='更新时间'
+    )
+
+    class Meta:
+        db_table = 'storage_batch'
+        verbose_name = '批次信息'
+        verbose_name_plural = '批次信息列表'
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"批次{self.id} - {self.purchase_order_detail.purchase_order.purchase_order_number}"
+
+    @property
+    def purchase_date(self):
+        """获取采购日期"""
+        return self.purchase_order_detail.purchase_order.purchase_date
+
+    @property
+    def supplier(self):
+        """获取供应商"""
+        return self.purchase_order_detail.purchase_order.supplier
+
+    @property
+    def cost(self):
+        """获取采购成本"""
+        return self.purchase_order_detail.unit_price
 
 class Allocation(models.Model):
     """货区货位模型"""

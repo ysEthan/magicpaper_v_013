@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     'gallery',
     'storage',
     'trade',
-    'logistics'
+    'logistics',
+    'procurement',
     # 'storage.apps.StorageConfig',
 ]
 
@@ -169,6 +170,12 @@ LOGGING = {
             'filename': os.path.join(LOG_DIR, 'trade.log'),  # trade应用的日志文件
             'formatter': 'verbose',
         },
+        'procurement_file': {
+            'level': 'INFO',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(LOG_DIR, 'procurement.log'),  # procurement应用的日志文件
+            'formatter': 'verbose',
+        },
         'console': {
             'level': 'INFO',
             'class': 'logging.StreamHandler',
@@ -183,6 +190,11 @@ LOGGING = {
         },
         'trade': {
             'handlers': ['trade_file', 'console'],
+            'level': 'INFO',
+            'propagate': True,
+        },
+        'procurement': {
+            'handlers': ['procurement_file', 'console'],
             'level': 'INFO',
             'propagate': True,
         },
